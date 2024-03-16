@@ -4,13 +4,13 @@
 # name of the character.
 
 define e = Character("Eileen")
-
+define audio.courtroom_bg = "<loop 4.363636363636364>courtroom.ogg"
 
 # The game starts here.
 
 label start:
 
-    play music "<loop 4.363636363636364>courtroom.ogg"
+    play music courtroom_bg
     # play music battle
 
     # Show a background. This uses a placeholder by default, but you can
