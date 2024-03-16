@@ -10,6 +10,9 @@ define e = Character("Eileen")
 
 label start:
 
+    play music "<loop 4.363636363636364>courtroom.ogg"
+    # play music battle
+
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
@@ -20,7 +23,7 @@ label start:
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
 
-    show eileen happy
+    show clover
 
     # These display lines of dialogue.
 
