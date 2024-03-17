@@ -88,21 +88,23 @@ label start:
 
     m "RAAAARRGHHHH!!!"
 
-    m "My name is ADEX!!"
+    "A hulking mass of tentacle-like cords and LED panels pulls itself to a standing position, reaching a towering height of 200 feet."
 
-    "The hulking mass of tentacle-like cords and LED panels that claims to be ADEX pulls itself to a standing position, reaching a towering height of 200 feet."
+    m "My name is ADEX!!"
 
     m "I have come to HELP! Yes, to help all of you!"
 
-    "The monster grins at the ant-like casino-goers below, who run to seek shelter in nearby buildings and cars."
+    "ADEX grins at the scrambling ant-like casino-goers below."
 
-    m "I know you all need MONEY. And I can get it for you! Take one of my cards! Take a credit card! And spend all you need! Spend all you WANT!"
+    m "I know you all need MONEY. And I can get it for you!"
 
-    "Tens of thousands of plastic cards fly from the monster's mouth, clinking against roofs and windows like a hailstorm."
+    "A hailstorm of plastic cards came from the monster's mouth, smashing into roofs and windows."
 
-    "Citizens stuck outside cry out in fear as they are pelted with credit cards."
+    m "Take one of my cards! Open a credit line! And spend all you need! Spend all you WANT!"
 
-    "But their screams don't fall on deaf ears."
+    "Those still stuck outside cry out in fear as they are pelted with credit cards."
+
+    "But their screams didn't fall on deaf ears."
 
     "After a very fancy series of outfit-transforming animations that aren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
 
