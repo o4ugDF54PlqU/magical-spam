@@ -560,8 +560,7 @@ label .choices:
 
         "♡ The citizens in the hotel ♡" if key_calm_the_people:
             "Todo <3"
-            "(Hey, you blew up my room!)"
-            jump bad_ending2
+            jump part_A5
         
         "♠ The monster's victim ♠" if key_speak_with_victim:
             "Todo <3"
