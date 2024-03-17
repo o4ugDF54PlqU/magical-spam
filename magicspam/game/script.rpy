@@ -256,18 +256,20 @@ label .choices:
 
             "Finally, she thrusts her hands forward, channeling the light into a laser that crackles with electric energy, piercing through the monster's eye."
 
-            "ADEX stumbles backwards as burnt pieces of wire and rubber fall from its face, but it holds its ground and turns away from the light."
+            "ADEX stumbles backwards as chunks of charred wire and rubber fall from its face, but it holds its ground and turns away from the light."
 
             if key_gofundme:
 
                 show belle at left_first
                 with quickleft
 
+                b "That shot was pretty poggers don't you guys think."
+
                 "Belle brings her phone to Amy's face."
 
                 b "Say hi to the chat, Amy!"
 
-                a "(rgh) Hi chat! Um. Subscribe!"
+                a "(rgh) Hi chat! Um... Subscribe!"
 
                 hide belle
                 with quickleft
@@ -280,13 +282,13 @@ label .choices:
 
             "Amy loses her focus on the attack, which bursts into an explosion of light, knocking Amy off her feet."
 
-            a "Shoot! I'm sorry guys, I hope that was enough time! I couldn't hold him for long!"
+            a "Shoot! Sorry guys, I hope that was enough time! I couldn't hold him for long!"
 
             show amy at left_second
             show eris at left_first
             with quickleft
 
-            e "Don't worry. You did what you needed."
+            e "Don't worry. That was just what we needed."
 
             hide eris
             show clover at left_first
@@ -354,22 +356,24 @@ label .choices:
             hide belle
             with quickleft
 
-            "Eris leaps across the neon signs that illuminate the Las Vegas street and draws a humming violet saber from behind her back."
+            "Eris wall jumps from an alley to get to the roof of an apartment."
+            
+            "She dashes from roof to roof beneath the neon glow and draws a humming violet saber from behind her."
 
-            "She reaches a hotel behind the monster and climbs up the wall to a balcony on the 20th floor, scaring a cat that had been calmly watching the chaos through a window."
+            "The path takes her in an arc around the monster. Its back is now in her sight."
 
             e "Shimmering Strike!"
 
-            "Eris propels herself off the balcony and plunges her blade into the red bulb, which shatters into thousands of glimmering scarlet shards."
+            "Eris propels herself off a radiator block, scaring a nearby cat that had been calmly watching the chaos, and plunges her blade into the red bulb, which shatters into thousands of glimmering scarlet shards."
             
             "ADEX reaches a massive arm towards its back, which Eris swiftly dodges."
 
-            "The monster lightly scratches its back where the bulb was, then returns to the fight, apparently unbothered."
+            "The monster scratches its wound for a few seconds before returning to the fight, apparently unbothered."
 
             show belle at left_first
             with quickleft
 
-            b "Huh. I guess that was just... a big red bulb or something. Sorry, that was a bad call."
+            b "Huh. I guess that was just... a big red bulb or something. Sorry, that was a bad call. I've been playing too many games lately."
 
             e "No, I thought it would do something, too. I guess we need to try something else."
 
@@ -386,7 +390,7 @@ label .choices:
 
 label part1_stage2:
 
-    "ADEX moves towards the hotel behind it and peers through the windows. Firefighters and volunteers are desperately trying to escort everybody out of the building as quickly as possible."
+    "ADEX turns towards the hotel behind it and peers through the windows. Firefighters and volunteers are urgently escorting everybody out of the building."
 
     show clover at left_second
     with quickleft
@@ -447,15 +451,16 @@ label .choices:
             show belle at left_first
             show amy at left_second
             with quickleft
+
+            
+            b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
+
+            a "Right! Let's save them while we let Clover charge up Glitter Cannon."
+
+            hide adex
+            with quickright
             
             if key_gofundme:
-
-                b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
-
-                a "Right! Let's save them while we let Clover charge up the beam."
-
-                hide adex
-                with quickright
 
                 "Belle and Amy help the terrified victims out of the building. On the way out, Belle shoves her phone in the face of a poor victim."
 
@@ -464,13 +469,6 @@ label .choices:
                 v "You destroyed my room and now you're profiting off of it through Twitch?!?"
             
             else:
-
-                b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
-
-                a "Right! Let's save them while we let Clover charge up the beam."
-
-                hide adex
-                with quickright
 
                 "Belle and Amy help the victims out of the building. Amy spawns puppies out of thin air to lighten the mood of the situation."
 
@@ -492,15 +490,15 @@ label .choices:
             show eris at left_first
             with quickleft
 
-            e "You guys keep fighting! I'll rescue the guy ADEX is holding."
+            e "You guys keep fighting! I'll rescue them."
             
-            "Eris slams her saber into the ground and rockets her self toward the monster's hand."
+            "Eris slams her saber into the ground and rockets herself toward the monster's hand."
 
-            "With a quick *SHLING!*, she slices through ADEX's thumb. The monster recoils and draws his hand back, dropping the man."
+            "With a quick *SHLING!*, she slices through ADEX's thumb. The monster recoils and draws its hand back, dropping the man."
 
             m "Ow! What the- OW!"
 
-            "Eris bounces off of the falling thumb and catches the falling man in midair, tumbling onto a balcony of the hotel."
+            "Eris pushes off of the falling thumb and catches the falling man in midair, tumbling onto a hotel balcony."
 
             show victim at left_second
             with quickleft
@@ -546,7 +544,7 @@ label .choices:
 
             "The onslaught of flying credit cards focuses on Eris, like a jet of peltering plastic."
 
-            "Eris brings her blade up to shield her face and grits her teeth to absorb the blast."
+            "Eris slashes at the air impossibly quickly to deflect the incoming polymer projectiles. Most bounce off the shimmering veil but a few get through and scratches her."
 
             e "Keep charging, Clover! Try not to hit anything other than ADEX!"
 
