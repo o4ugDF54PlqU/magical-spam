@@ -345,7 +345,7 @@ label part1_stage2:
 
     b "You're right. For once, the situation calls for Glitter Cannon."
 
-    hide bell
+    hide belle
     show eris at left_first
     with quickleft
 
@@ -501,14 +501,14 @@ label .choices:
         "♠ Blame Clover ♠" if key_blame_clover:
             jump bad_ending1
 
-    show bg court
-    play music audio.courtroom_bgm
-
     "court"
     return
 
 
 label part2_A2:
+
+    show bg court
+    play music audio.courtroom_bgm
 
     "You are charged with vandalism."
 
