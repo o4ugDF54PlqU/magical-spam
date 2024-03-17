@@ -277,7 +277,6 @@ label .choices:
             jump .choices
 
         "♣ Start charging Glitter Cannon ♣":
-            $ charge_mult += 1
             jump part1_stage2
         
         "♠ Shimmering Strike! ♠" if choice4:
@@ -592,7 +591,7 @@ label .aftermath:
 
 label part2_A1:
     
-    $ charge_multiplier = 1.5
+    $ charge_multiplier = 1
     # reset multiplier
 
     show bg jail
