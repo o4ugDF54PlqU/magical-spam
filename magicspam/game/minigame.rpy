@@ -62,7 +62,7 @@ init python:
             return render
 
         def event(self, ev, x, y, st):
-            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_c:
+            if ev.type == pygame.KEYDOWN:
                 increase_charge(0.03 * self.charge_multiplier)
                 check_win(self.label)
             elif ev.type == pygame.MOUSEBUTTONDOWN:
