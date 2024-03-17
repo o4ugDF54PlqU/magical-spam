@@ -6,6 +6,8 @@ init python:
     class Charge(renpy.Displayable):
 
         def __init__(self, child, label, charge_multiplier, **kwargs):
+            global decreasing_charge
+            decreasing_charge = 0
 
             # Pass additional properties on to the renpy.Displayable
             # constructor.

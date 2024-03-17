@@ -79,6 +79,26 @@ screen after_magic_p1:
         xalign 0.5
         yalign 0.5
 
+screen alpha_magic_good:
+    add Charge("magicball.png", "good_ending2.fadeout", charge_mult):
+        xalign 0.5
+        yalign 0.5
+
+screen after_magic_good:
+    add Fadeout("white.png", "good_ending2.aftermath"):
+        xalign 0.5
+        yalign 0.5
+
+screen alpha_magic_bad:
+    add Charge("magicball.png", "bad_ending3.fadeout", charge_mult):
+        xalign 0.5
+        yalign 0.5
+
+screen after_magic_bad:
+    add Fadeout("white.png", "bad_ending3.aftermath"):
+        xalign 0.5
+        yalign 0.5
+
 label charge_cannon:
 
     $ cannon_charge = cannon_charge + 1
@@ -390,9 +410,9 @@ label part1_stage2:
     "Amidst the tangled cables that compose ADEX's hand, a man struggles against the monsters grip and yells unintelligibly at its face."
 
     if preferences.clover_swear:
-        c "Damn it. I'll try to aim the cannon to not hit him. But it won't be easy if this dude keeps throwing stupid credit cards at me!"
+        c "Damn it. I'll try to aim the cannon to not hit him. But it won't be easy if ADEX keeps throwing stupid credit cards at me!"
     else:
-        c "Uh oh. I'll try to aim the cannon to not hit him. But it won't be easy if this dude keeps throwing stupid credit cards at me!"
+        c "Uh oh. I'll try to aim the cannon to not hit him. But it won't be easy if ADEX keeps throwing stupid credit cards at me!"
 
     hide eris
     hide clover
@@ -610,8 +630,6 @@ label part1_stage4:
 
     call screen alpha_magic_p1
 
-    # "charge by spamming C"
-
 label .fadeout:
 
     hide screen alpha_magic_p1
@@ -622,7 +640,7 @@ label .aftermath:
     hide screen after_magic_p1
     
     hide adex
-    with quickright
+    with dissolve
 
     "The monster instantly faints. He did not stand a chance."
 
@@ -677,7 +695,7 @@ label part2_A1:
     show bg jail
     play music jail
 
-    a "I can't believe they threw US in jail!"
+    a "Why did they throw US in jail?!"
 
     e "I can't believe this is happening. I'm glad we got the enemy, but when we get out of here we probably need to work on the accuracy of the Glitter Cannon."
 
@@ -712,7 +730,7 @@ label .choices:
             jump .choices
         
         "♣ Start charging Glitter Cannon ♣":
-            jump charge_cannon
+            call charge_cannon
             jump part2_A2
         
         "♠ Blame Clover ♠" if key_blame_clover:
@@ -727,9 +745,18 @@ label part2_A2:
     show bg court
     play music audio.courtroom_bgm
 
+    hide clover
+    hide eris
+    show judge at right
+    with quickright
+
     "You are charged with vandalism."
 
     "How do you plead?"
+
+    hide amy
+    hide belle
+    with quickleft
 
     menu:
 
@@ -737,7 +764,7 @@ label part2_A2:
             jump part2_A3
         
         "♡♣ Not guilty ♣♡":
-            jump charge_cannon
+            call charge_cannon
             jump part2_B3
 
 
@@ -746,6 +773,7 @@ label part2_A3:
     "We plead guilty, BUT..."
 
     $ choice1 = True
+    $ choice4 = True
 
 label .choices:
 
@@ -762,14 +790,29 @@ label .choices:
         "♢ We can fix our mistakes ♢":
             jump part2_C4
         
-        "♣ *Stick out your tongue* ♣":
-            jump charge_cannon
-            jump bad_ending2
+        "♣ *Stick out your tongue* ♣" if choice4:
+
+            show clover at left
+            with quickleft
+
+            c "MLEH!"
+
+            j "Rude."
+
+            hide clover
+            with quickleft
+
+            $ choice4 = False
+
+            call charge_cannon
+            jump .choices
 
 
 label part2_A4:
     
     "Do you have anybody to vouch for you?"
+
+    $ choice4 = True
 
 label .choices:
 
@@ -787,10 +830,22 @@ label .choices:
             "Todo <3"
             jump bad_ending2
         
-        "♣ Your mom! ♣":
-            "Todo <3"
-            jump charge_cannon
-            jump bad_ending2
+        "♣ Your mom! ♣" if choice4:
+
+            show clover at left
+            with quickleft
+
+            c "YOUR MOM!"
+
+            j "Uncalled for."
+
+            hide clover
+            with quickleft
+
+            $ choice4 = False
+
+            call charge_cannon
+            jump .choices
 
 
 label part2_A5:
@@ -867,6 +922,7 @@ label part2_B3:
         
         "♣ Try to enrage the monster ♣":
             "Todo <3"
+            call charge_cannon
             jump bad_ending2
         
         "♢ Accuse the monster ♢":
@@ -905,6 +961,8 @@ label .choices:
 
             c "Right?!?"
 
+            call charge_cannon
+
             $ choice4 = False
             jump .choices
 
@@ -922,7 +980,7 @@ label part2_B5:
         "♡♠♢ We did the right thing! ♢♠♡":
             jump good_ending1
 
-        "♣ GLITTEERRRRR CANNOOOOOOONN!!! ♣":
+        "♣ GLITTEERRRRR CANNOOOOOOONN!!! ♣" if cannon_charge >= 3:
             jump good_ending2
 
 
@@ -946,6 +1004,7 @@ label .choices:
         
         "♣ With a car wash ♣":
             "Todo <3"
+            call charge_cannon
             jump bad_ending2
         
         "♠ Start crying ♠" if choice4:
@@ -979,9 +1038,51 @@ label bad_ending2:
 
 label bad_ending3:
 
-    play music defeat
+    play music battle
 
-    "Bad ending 3 ♣: charge beam is used, but at the wrong time, so the other girls only get upset with Clover "
+    show judge at right
+    with quickright
+    
+    show clover at left
+    with quickleft
+
+    if preferences.clover_swear:
+        c "I can't fuckin' TAKE this any more!"
+    else:
+        c "I can't TAKE this any more!"
+
+    with hpunch
+    c "GLITTER CANNOOOONN!!"
+
+    hide clover
+    show judge at center
+    with quickleft
+
+    call screen alpha_magic_bad
+
+label .fadeout:
+
+    hide screen alpha_magic_bad
+    call screen after_magic_bad
+
+label .aftermath:
+    
+    hide screen after_magic_bad
+
+    hide judge
+    with dissolve
+
+    show clover at left_second
+    with quickleft
+
+    c "Take THAT!"
+
+    show belle at right_second
+    with quickright
+
+    b "CLOVER!"
+
+    b "What the hell?!"
 
     jump credits
 
@@ -1024,8 +1125,67 @@ label good_ending1:
 label good_ending2:
 
     # play music victory
+    stop music
 
-    "Good Ending 2 ♣(♢): charge beam is used at correct time when villains arrive, judge forgives them for destroying the city"
+    show adex at right
+    with quickright
+    
+    show clover at left
+    with quickleft
+
+    c "That's it. We're doing this right."
+
+    with hpunch
+    c "GLITTERRRR"
+
+    c "CANNOOOONN!!"
+
+    hide clover
+    show adex at center
+    with quickleft
+
+    call screen alpha_magic_good
+
+label .fadeout:
+
+    hide screen alpha_magic_good
+    call screen after_magic_good
+
+label .aftermath:
+    
+    hide screen after_magic_good
+
+    hide adex
+    with dissolve
+
+    show clover at left_second
+    with quickleft
+
+    c "Take THAT!"
+
+    show belle at right_second
+    with quickright
+
+    b "CLOVER! What are you doing?!"
+
+    show judge at right
+    show clover at left_first
+    show belle at left_second
+    with quickright
+
+    "The judge bangs his gavel against the smoking ashes that used to be his desk."
+
+    j "ORDER! Order in the court!"
+
+    play music victory
+
+    j "I now see the true evil intentions of this terrible monster."
+    
+    j "Your actions are destructive. Like, very destructive. BUT!"
+
+    j "They may just be necessary."
+
+    j "And for that reason, I declare you to be NOT GUILTY!"
 
     jump credits
 
