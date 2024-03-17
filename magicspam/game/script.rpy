@@ -269,7 +269,7 @@ label start_menu:
             jump start_menu
 
         "♣ Start charging Glitter Cannon ♣":
-            $ charge_mult += 0.5
+            $ charge_mult += 1
             jump part1_stage2
         
         "♠ Shimmering Strike! ♠" if choice4:
@@ -466,5 +466,6 @@ label .aftermath:
 ###############################################################################
 
 label part2_stage1:
-
+    $ charge_multiplier = 1.5
+    # reset multiplier
     return
