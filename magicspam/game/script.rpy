@@ -633,6 +633,30 @@ label .choices:
             jump .choices
 
 
+# Plead not guilty
+label part2_B3:
+
+    "Well, we have a witness here. *Brings in ADEX*"
+
+    menu:
+
+        "♠ Call the victim to the stand ♠" if key_speak_with_victim:
+            "Todo <3"
+            jump part2_B4
+        
+        "♣ Try to enrage the monster ♣":
+            "Todo <3"
+            jump bad_ending2
+        
+        "♢ Accuse the monster ♢":
+            "Todo <3"
+            jump bad_ending2
+        
+        "♡ Appeal to ADEX's empathy ♡":
+            "Todo <3"
+            jump bad_ending2
+
+
 label bad_ending1:
 
     play music defeat
