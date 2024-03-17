@@ -1,4 +1,26 @@
 ﻿# The script of the game goes in this file.
+init python:
+    # Define the variable to be decreased
+    decreasing_charge = 0
+    last_event_time = pygame.time.get_ticks()
+
+    def check_win():
+        global decreasing_charge
+        if decreasing_charge >= 1:
+            renpy.jump("part1_stage4.aftermath")
+
+    def decrease_charge(amount):
+        global decreasing_charge
+        if decreasing_charge < 1:
+            decreasing_charge -= amount
+        if decreasing_charge < 0:
+            decreasing_charge = 0
+
+    def increase_charge(amount):
+        global decreasing_charge
+        decreasing_charge += amount
+        check_win()
+
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -24,7 +46,7 @@ transform left_second:
     ypos 120
 
 screen alpha_magic:
-    add Charge("test.png", 100, 200):
+    add Charge("test.png", 1):
         xalign 0.5
         yalign 0.5
 
@@ -373,7 +395,9 @@ label part1_stage4:
 
     show screen alpha_magic
 
-    "Charge ~*~ GLITTER CANNON ~*~ by spamming C!"
+    "charge by spamming C"
+
+label .aftermath:
 
     hide screen alpha_magic
 
