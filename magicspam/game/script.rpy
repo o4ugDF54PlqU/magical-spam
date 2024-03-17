@@ -35,6 +35,8 @@ define b = Character("Belle", color="#1049ce")
 define c = Character("Clover", color="#10a341")
 define e = Character("Eris", color="#bb0ed6")
 define m = Character("ADEX", color="#FFFFFF")
+define v = Character("Victim", color="#f5c255")
+define j = Character("Judge", color="#d39a20")
 
 define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
 
@@ -659,6 +661,71 @@ label part2_B3:
             jump bad_ending2
 
 
+label part2_B4:
+
+    "You may ask the victim one question."
+
+    $ choice4 = True
+
+label .choices:
+
+    menu:
+        
+        "♢ Why did you agree to ADEX's terms? ♢":
+            "*Judge victim blames*"
+            jump bad_ending2
+        
+        "♠ Are you still in debt? ♠":
+            "*Judge victim blames*"
+            jump bad_ending2
+
+        "♡ Are you ok? ♡":
+            jump part2_B5
+
+        "♣ Ok, but the Glitter Cannon was pretty sick, right?" if choice4:
+
+            v "Haha yeah, it was pretty cool actually."
+
+            c "Right?!?"
+
+            $ choice4 = False
+            jump .choices
+
+
+label part2_B5:
+
+    v "No, I'm in debt."
+
+    j "Ah. ADEX is bad."
+
+    a "And with that, we have one thing left to say."
+
+    menu:
+
+        "♡♠♢ We did the right thing! ♢♠♡":
+            jump good_ending1
+
+        "♣ GLITTEERRRRR CANNOOOOOOONN!!! ♣":
+            jump good_ending2
+
+
+label part2_C4:
+
+    j "How do you propose fixing $2.5 million dollars in damage?"
+
+label .choices:
+
+    menu:
+
+        "♡ With Sparkle 'Splosions! ♡":
+            "Todo <3"
+            jump bad_ending2
+        
+        "♢ With a Gofundme campaign ♢" if key_gofundme:
+            "Todo <3"
+            jump neutral_ending1
+
+
 label bad_ending1:
 
     play music defeat
@@ -681,11 +748,55 @@ label bad_ending2:
     return
 
 
+label bad_ending3:
+
+    play music defeat
+
+    "Bad ending 3 ♣: charge beam is used, but at the wrong time, so the other girls only get upset with Clover "
+
+    jump credits
+
+    return
+
+
+label neutral_ending1:
+
+    play music battle
+
+    "Neutral Ending 1 ♢: team pleads guilty, but some debt still has to be paid. Debt is repaid through gofundme"
+
+    jump credits
+
+    return
+
+
 label neutral_ending2:
 
     play music battle
 
     "Neutral Ending 2 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris isolates herself from the group, rest of the group remains and tries to find a replacement"
+
+    jump credits
+
+    return
+
+
+label good_ending1:
+    
+    # play music victory
+
+    "Good Ending 1 ♡♢♣♠: court case is won, debt does not have to be repaid"
+
+    jump credits
+
+    return
+
+
+label good_ending2:
+
+    # play music victory
+
+    "Good Ending 2 ♣(♢): charge beam is used at correct time when villains arrive, judge forgives them for destroying the city"
 
     jump credits
 
