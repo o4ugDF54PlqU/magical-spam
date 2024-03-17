@@ -30,10 +30,10 @@ init python:
 
 define config.menu_include_disabled = True
 
-define a = Character("Amy", color="#a30d1a")
-define b = Character("Belle", color="#183c8f")
+define a = Character("Amy", color="#d60a1b")
+define b = Character("Belle", color="#1049ce")
 define c = Character("Clover", color="#10a341")
-define e = Character("Eris", color="#5a0f66")
+define e = Character("Eris", color="#bb0ed6")
 define m = Character("ADEX", color="#FFFFFF")
 
 define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
@@ -41,11 +41,13 @@ define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
 define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
 
 transform left_first:
-    xcenter 360
+    xalign 0.15
+    xanchor 0.5
     ypos 120
 
 transform left_second:
-    xcenter 710
+    xalign 0.35
+    xanchor 0.5
     ypos 120
 
 define charge_mult = 1
