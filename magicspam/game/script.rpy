@@ -71,7 +71,7 @@ screen after_magic_p1:
 label start:
 
     # play music courtroom_bgm
-    # play music battle
+    play music battle
     # jump part2_stage1
 
     scene bg city
@@ -150,7 +150,6 @@ label start:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump .choices
 
 label .choices:
     
@@ -369,13 +368,13 @@ label part1_stage2:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump .choices
 
 label .choices:
 
     define key_calm_the_people = False
     define key_speak_with_victim = False
     define key_happy_eris = False
+    define key_blame_clover = True
 
     menu:
 
@@ -393,6 +392,7 @@ label .choices:
         "♣ Call for Eris' help ♣":
             "Todo <3"
             $ key_happy_eris = True
+            $ key_blame_clover = False
             jump part1_stage3
     
     return
@@ -406,10 +406,6 @@ label part1_stage3:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump .choices
-
-    return
-
 
 label .choices:
 
@@ -473,6 +469,7 @@ label part2_A1:
     # reset multiplier
 
     show bg jail
+    play music jail
 
     "The girls end up in jail."
 
@@ -484,9 +481,45 @@ label part2_A1:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump part2_A1.choices
+
+label .choices:
+
+    menu:
+
+        "♢ Go peacefully ♢":
+            "Todo <3"
+        
+        "♡ Summon a puppy ♡" if choice2:
+            "Todo <3"
+            $ choice2 = False
+            jump .choices
+        
+        "♣ Start charging Glitter Cannon ♣":
+            "Todo <3"
+        
+        "♠ Blame Clover ♠" if key_blame_clover:
+            jump bad_ending1
 
     show bg court
+    play music audio.courtroom_bgm
 
     "court"
+    return
+
+
+label bad_ending1:
+    
+    "Bad ending 1 ♠:  Eris leaves the group, Belle becomes depressed, Amy falls deeper into addiction, and Clover gets revenge on the government and falls into the crippling debt"
+
+    jump credits
+
+    return
+
+
+label credits:
+
+    "Writers: Brighton Pauli, Zoie Tuinstra, KB Tran\nProgramming: KB Tran, Brighton Pauli\nArt: Lili Omilian"
+
+    "Music: SC Klein, Michael Eaton\nBackgrounds: KB Tran"
+
     return
