@@ -37,10 +37,15 @@ define e = Character("Eris", color="#bb0ed6")
 define m = Character("ADEX", color="#FFFFFF")
 define v = Character("Victim", color="#f5c255")
 define j = Character("Judge", color="#d39a20")
+define l = Character("Bailiff", color="#b4790a")
 
 define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
+define audio.victory = "<loop 5.53>victory.ogg"
 
 define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
+define quickright = MoveTransition(0.2, enter=offscreenright, leave=offscreenright)
+
+define cannon_charge = 0
 
 transform left_first:
     xalign 0.15
@@ -49,6 +54,16 @@ transform left_first:
 
 transform left_second:
     xalign 0.35
+    xanchor 0.5
+    ypos 120
+
+transform right_first:
+    xalign 0.85
+    xanchor 0.5
+    ypos 120
+
+transform right_second:
+    xalign 0.65
     xanchor 0.5
     ypos 120
 
@@ -63,6 +78,22 @@ screen after_magic_p1:
     add Fadeout("white.png", "part1_stage4.aftermath"):
         xalign 0.5
         yalign 0.5
+
+label charge_cannon:
+
+    $ cannon_charge = cannon_charge + 1
+
+    if cannon_charge == 1:
+        "{color=#10a341}Clover starts charging the Glitter Cannon.{/color}"
+
+    elif cannon_charge == 2:
+        "{color=#10a341}The Glitter Cannon is almost charged.{/color}"
+    
+    else:
+        "{color=#10a341}The Glitter Cannon is fully charged!{/color}"
+
+    return
+
 
 ###############################################################################
 #  #                                                                       #  #
@@ -111,13 +142,13 @@ label start:
 
     m "I know you all need MONEY. And I can get it for YOU!"
 
-    "A hailstorm of plastic cards came from the monster's mouth, smashing into roofs and windows."
+    "A hailstorm of plastic cards erupts from the monster's mouth, smashing into roofs and windows."
 
     m "TAKE one of my cards! OPEN a credit line! SPEND all you need! SPEND all you WANT!"
 
     "Those still stuck outside cry out in fear as they are pelted with credit cards."
 
-    "But their screams didn't fall on deaf ears."
+    "But their screams don't fall on deaf ears."
 
     "After a very fancy series of outfit-transforming animations that aren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
 
@@ -386,18 +417,116 @@ label .choices:
     menu:
 
         "♡♢ Rescue civilians in the building ♢♡" if choice1:
-            "Todo <3"
+
+            show belle at left_first
+            show amy at left_second
+            with quickleft
+            
+            if key_gofundme:
+
+                b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
+
+                a "Right! Let's save them while we let Clover charge up the beam."
+
+                hide adex
+                with quickright
+
+                "Belle and Amy help the terrified victims out of the building. On the way out, Belle shoves her phone in the face of a poor victim."
+
+                b "Say hi to the Twitch stream! Go ahead and tell them how you're feeling!"
+
+                v "You destroyed my room and now you're profiting off of it through Twitch?!?"
+            
+            else:
+
+                b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
+
+                a "Right! Let's save them while we let Clover charge up the beam."
+
+                hide adex
+                with quickright
+
+                "Belle and Amy help the victims out of the building. Amy spawns puppies out of thin air to lighten the mood of the situation."
+
+                v "You destroyed my room and now you think that you can cheer me up with puppies?!?"
+
+            hide belle
+            hide amy
+            with quickleft
+
+            show adex at right
+            with quickright
+
             $ key_calm_the_people = True
             $ choice1 = False
             jump .choices
         
         "♠ Save the monster's victim ♠":
-            "Todo <3"
+            
+            show eris at left_first
+            with quickleft
+
+            e "You guys keep fighting! I'll rescue the guy ADEX is holding."
+            
+            "Eris slams her saber into the ground and rockets her self toward the monster's hand."
+
+            "With a quick *SHLING!*, she slices through ADEX's thumb. The monster recoils and draws his hand back, dropping the man."
+
+            m "Ow! What the- OW!"
+
+            "Eris bounces off of the falling thumb and catches the falling man in midair, tumbling onto a balcony of the hotel."
+
+            show victim at left_second
+            with quickleft
+
+            e "Are you ok?"
+
+            v "Ugh... ow."
+
+            hide eris
+            hide victim
+            with quickleft
+            
             $ key_speak_with_victim = True
             jump part1_stage3
         
         "♣ Call for Eris' help ♣":
-            "Todo <3"
+            
+            show clover at left_first
+            with quickleft
+
+            c "Eris! I need you!"
+
+            show eris at left_second
+            with quickleft
+
+            c "I can't focus. Make him stop with the credit cards!"
+
+            e "Right."
+
+            hide clover
+            show eris at left_first
+            with quickleft
+
+            "Eris leaps from balcony to balcony up to the roof of the hotel."
+
+            e "HEY! LOOK OVER HERE, YOU- you THING!"
+
+            "ADEX turns its head slowly to face Eris, peering at her through narrowed eyes."
+
+            e "I would just LOVE to open a credit account with you! I need to buy SO MUCH STUFF! And I can't AFFORD it!"
+
+            m "Oh? Oh! Well, I would be MORE than happy to help! Mwahahaha!!!"
+
+            "The onslaught of flying credit cards focuses on Eris, like a jet of peltering plastic."
+
+            "Eris brings her blade up to shield her face and grits her teeth to absorb the blast."
+
+            e "Keep charging, Clover! Try not to hit anything other than ADEX!"
+
+            hide eris
+            with quickleft
+
             $ key_happy_eris = True
             $ key_blame_clover = False
             jump part1_stage3
@@ -407,7 +536,7 @@ label .choices:
 
 label part1_stage3:
 
-    "Todo <3"
+    # "Todo <3"
 
     $ choice1 = True
     $ choice2 = True
@@ -427,12 +556,32 @@ label .choices:
             jump part1_stage4
         
         "♠ Talk with the victim ♠" if key_speak_with_victim:
-            "Todo <3"
+            
+            show eris at left_first
+            show victim at left_second
+            with quickleft
+
+            e "Sir, can you hear me? Are you alright?"
+
+            v "Ugh, that thing, it- it... I'm in so much debt!"
+
+            e "Stay with me. How did it capture you?"
+
+            v "I CAN'T PAY RENT."
+
+            e "Oh jeez."
+
+            hide eris
+            hide victim
+            with quickleft
+
             $ key_guilty_villain = True
             jump part1_stage4
         
         "♢ Blue Brilliance! ♢":
-            "Todo <3"
+
+            "Blue Brilliance is left as an exercise for the reader."
+
             jump part1_stage4
 
     return
@@ -440,7 +589,28 @@ label .choices:
 
 label part1_stage4:
 
-    "Todo <3"
+    show clover at left_second
+    with quickleft
+
+    if preferences.clover_swear:
+        c "Thanks for stalling, y'all, the Glitter Cannon is fully charged. Time to fucking blow everything up!"
+    else:
+        c "Thanks for stalling, y'all, the Glitter Cannon is fully charged. Time to fucking blow everything up!"
+
+    "Clover shakes as she struggles to contain the power of the fully charged beam. She aims it the best she can towards the monster and releases the blinding laser."
+
+    show clover at left_first
+    with quickleft
+    with hpunch
+
+    if preferences.clover_swear:
+        c "TAKE THAT, BITCH! ARRRRGGGGHHHH!!!!!!!!!!"
+    else:
+        c "TAKE THAT! ARRRRGGGGHHHH!!!!!!!!!!"
+
+    hide clover
+    show adex at center
+    with quickleft
 
     call screen alpha_magic_p1
 
@@ -454,8 +624,41 @@ label .fadeout:
 label .aftermath:
     
     hide screen after_magic_p1
+    
+    hide adex
+    with quickright
 
-    "Todo <3"
+    "The monster instantly faints. He did not stand a chance."
+
+    show amy at left_first
+    with quickleft
+
+    a "YOU DID IT! No one can deflect the Glitter Cannon!"
+
+    show belle at left_second
+    with quickleft
+
+    b "That was perfect, Clover! You destroyed that thing!"
+
+    if key_gofundme:
+        b "And the stream loved it! We're getting so many donations!"
+
+    show clover at right_second
+    with quickright
+
+    if preferences.clover_swear:
+        c "FUCK YEAHHHHHHH!! GLITTER CANNOOONNN!"
+    else:
+        c "FRICK YEAHHHHHHH!! GLITTER CANNOOONNN!"
+
+    show eris at right_first
+    with quickright
+
+    e "Sorry to break the mood, but I think we destroyed more than just the enemy. Like a lot more. And do you all hear that?"
+
+    "Police sirens wail in the distance, approaching the smoking battleground."
+
+    a "Hey, the police are here! Time to arrest a credit card monster!"
 
     jump part2_A1
 
@@ -478,11 +681,24 @@ label part2_A1:
     show bg jail
     play music jail
 
-    "The girls end up in jail."
+    a "I can't believe they threw US in jail!"
 
-    "todo <3"
+    e "I can't believe this is happening. I'm glad we got the enemy, but when we get out of here we probably need to work on the accuracy of the Glitter Cannon."
 
-    "todo <3"
+    c "Hey, I'm working on it! It's not my problem that the Glitter Cannon is so amazingly amazing."
+
+    c "My power is simply destroying things with godly amounts of glitter and cannon."
+
+    a "At the end of the day we got the villain so let's just focus on the positive. Yayyyyyy!"
+
+    if preferences.clover_swear:
+        b "I can't think of any other people who I would rather be jailed with. I love you all. We girl boss pussy slayyyyyyyed today."
+    else:
+        b "I can't think of any other people who I would rather be jailed with. I love you all."
+
+    "The door to the jail cell swings open and a woman walks in."
+
+    l "I am the bailiff. You are all being summoned to the court today for your trial."
 
     $ choice2 = True
 
@@ -500,7 +716,7 @@ label .choices:
             jump .choices
         
         "♣ Start charging Glitter Cannon ♣":
-            "Todo <3"
+            jump charge_cannon
             jump part2_A2
         
         "♠ Blame Clover ♠" if key_blame_clover:
@@ -525,6 +741,7 @@ label part2_A2:
             jump part2_A3
         
         "♡♣ Not guilty ♣♡":
+            jump charge_cannon
             jump part2_B3
 
 
@@ -550,6 +767,7 @@ label .choices:
             jump part2_C4
         
         "♣ *Stick out your tongue* ♣":
+            jump charge_cannon
             jump bad_ending2
 
 
@@ -575,6 +793,7 @@ label .choices:
         
         "♣ Your mom! ♣":
             "Todo <3"
+            jump charge_cannon
             jump bad_ending2
 
 
