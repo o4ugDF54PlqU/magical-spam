@@ -1279,8 +1279,8 @@ label good_ending3:
 
 label credits:
 
-    "Writers: Brighton Pauli, Zoie Tuinstra, KB Tran\nProgramming: KB Tran, Brighton Pauli\nArt: Lili Omilian"
+    "Writers: Brighton Pauli, Zoie Tuinstra, KB Tran\nProgramming: KB Tran, Brighton Pauli\nArt: Lili Omilian, KB Tran"
 
-    "Music: SC Klein, Michael Eaton\nBackgrounds: KB Tran"
+    "Music: SC Klein, Michael Eaton"
 
     $ MainMenu(confirm=False)()
