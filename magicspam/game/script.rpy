@@ -41,6 +41,7 @@ define j = Character("Judge", color="#d39a20")
 define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
 
 define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
+define quickright = MoveTransition(0.2, enter=offscreenright, leave=offscreenright)
 
 transform left_first:
     xalign 0.15
@@ -383,18 +384,116 @@ label .choices:
     menu:
 
         "♡♢ Rescue civilians in the building ♢♡" if choice1:
-            "Todo <3"
+
+            show belle at left_first
+            show amy at left_second
+            with quickleft
+            
+            if key_gofundme:
+
+                b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
+
+                a "Right! Let's save them while we let Clover charge up the beam."
+
+                hide adex
+                with quickright
+
+                "Belle and Amy help the terrified victims out of the building. On the way out, Belle shoves her phone in the face of a poor victim."
+
+                b "Say hi to the Twitch stream! Go ahead and tell them how you're feeling!"
+
+                v "You destroyed my room and now you're profiting off of it through Twitch?!?"
+            
+            else:
+
+                b "We need to rescue all of the civilians in the building! We can get this on stream for publicity"
+
+                a "Right! Let's save them while we let Clover charge up the beam."
+
+                hide adex
+                with quickright
+
+                "Belle and Amy help the victims out of the building. Amy spawns puppies out of thin air to lighten the mood of the situation."
+
+                v "You destroyed my room and now you think that you can cheer me up with puppies?!?"
+
+            hide belle
+            hide amy
+            with quickleft
+
+            show adex at right
+            with quickright
+
             $ key_calm_the_people = True
             $ choice1 = False
             jump .choices
         
         "♠ Save the monster's victim ♠":
-            "Todo <3"
+            
+            show eris at left_first
+            with quickleft
+
+            e "You guys keep fighting! I'll rescue the guy ADEX is holding."
+            
+            "Eris slams her saber into the ground and rockets her self toward the monster's hand."
+
+            "With a quick *SHLING!*, she slices through ADEX's thumb. The monster recoils and draws his hand back, dropping the man."
+
+            m "Ow! What the- OW!"
+
+            "Eris bounces off of the falling thumb and catches the falling man in midair, tumbling onto a balcony of the hotel."
+
+            show victim at left_second
+            with quickleft
+
+            e "Are you ok?"
+
+            v "Ugh... ow."
+
+            hide eris
+            hide victim
+            with quickleft
+            
             $ key_speak_with_victim = True
             jump part1_stage3
         
         "♣ Call for Eris' help ♣":
-            "Todo <3"
+            
+            show clover at left_first
+            with quickleft
+
+            c "Eris! I need you!"
+
+            show eris at left_second
+            with quickleft
+
+            c "I can't focus. Make him stop with the credit cards!"
+
+            e "Right."
+
+            hide clover
+            show eris at left_first
+            with quickleft
+
+            "Eris leaps from balcony to balcony up to the roof of the hotel."
+
+            e "HEY! LOOK OVER HERE, YOU- you THING!"
+
+            "ADEX turns its head slowly to face Eris, peering at her through narrowed eyes."
+
+            e "I would just LOVE to open a credit account with you! I need to buy SO MUCH STUFF! And I can't AFFORD it!"
+
+            m "Oh? Oh! Well, I would be MORE than happy to help! Mwahahaha!!!"
+
+            "The onslaught of flying credit cards focuses on Eris, like a jet of peltering plastic."
+
+            "Eris brings her blade up to shield her face and grits her teeth to absorb the blast."
+
+            e "Keep charging, Clover! Try not to hit anything other than ADEX!"
+
+            hide eris
+            with quickleft
+
             $ key_happy_eris = True
             $ key_blame_clover = False
             jump part1_stage3
@@ -404,7 +503,7 @@ label .choices:
 
 label part1_stage3:
 
-    "Todo <3"
+    # "Todo <3"
 
     $ choice1 = True
     $ choice2 = True
@@ -424,7 +523,25 @@ label .choices:
             jump part1_stage4
         
         "♠ Talk with the victim ♠" if key_speak_with_victim:
-            "Todo <3"
+            
+            show eris at left_first
+            show victim at left_second
+            with quickleft
+
+            e "Sir, can you hear me? Are you alright?"
+
+            v "Ugh, that thing, it- it... I'm in so much debt!"
+
+            e "Stay with me. How did it capture you?"
+
+            v "I CAN'T PAY RENT."
+
+            e "Oh jeez."
+
+            hide eris
+            hide victim
+            with quickleft
+
             $ key_guilty_villain = True
             jump part1_stage4
         
@@ -439,6 +556,9 @@ label part1_stage4:
 
     "Todo <3"
 
+    show adex at center
+    with quickleft
+
     call screen alpha_magic_p1
 
     # "charge by spamming C"
@@ -451,6 +571,9 @@ label .fadeout:
 label .aftermath:
     
     hide screen after_magic_p1
+    
+    hide adex
+    with quickright
 
     "Todo <3"
 
