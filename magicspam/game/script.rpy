@@ -231,7 +231,7 @@ label start_menu:
             if preferences.clover_swear:
                 c "Get his ass, Amy!"
             else:
-                c "Get his a**, Amy!"
+                c "Get him, Amy!"
 
             hide clover
             hide amy
@@ -341,13 +341,15 @@ label part1_stage2:
     show belle at left_first
     with quickleft
 
-    b "You're right. For once, the situation calls for Glitter Cannon. Just be careful."
+    b "You're right. For once, the situation calls for Glitter Cannon."
 
-    c "I know, I know. Now buy me time while I charge up!"
-
-    hide belle
+    hide bell
     show eris at left_first
     with quickleft
+
+    e "Just be careful."
+
+    c "I know, I know. Now buy me time while I charge up!"
 
     e "WAIT! Look in that thing's hand! There's someone there!"
 
