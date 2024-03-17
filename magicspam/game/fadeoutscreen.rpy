@@ -5,11 +5,11 @@ init python:
 
     class Fadeout(renpy.Displayable):
 
-        def __init__(self, child, charge_multiplier, **kwargs):
+        def __init__(self, child, **kwargs):
 
             # Pass additional properties on to the renpy.Displayable
             # constructor.
-            super(Charge, self).__init__(**kwargs)
+            super(Fadeout, self).__init__(**kwargs)
 
             # The child.
             self.child = renpy.displayable(child)
@@ -56,15 +56,6 @@ init python:
             return render
 
         def event(self, ev, x, y, st):
-            if ev.type == pygame.KEYDOWN and ev.key == pygame.K_c:
-                increase_charge(0.03 * self.charge_multiplier)
-
-            # If the alpha has changed, trigger a redraw event.
-            # if self.alpha != decreasing_charge:
-            #     self.alpha = decreasing_charge
-            #     renpy.redraw(self, 0)
-
-            # Pass the event to our child.
             return self.child.event(ev, x, y, st)
 
         def visit(self):
