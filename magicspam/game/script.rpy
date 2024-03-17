@@ -32,7 +32,7 @@ define c = Character("Clover")
 define e = Character("Eris")
 define m = Character("ADEX")
 
-define audio.courtroom_bg = "<loop 4.363636363636364>courtroom.ogg"
+define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
 
 define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
 
@@ -66,8 +66,9 @@ screen after_magic:
 
 label start:
 
-    # play music courtroom_bg
+    # play music courtroom_bgm
     # play music battle
+    jump part2_stage1
 
     scene bg city
 
@@ -468,4 +469,9 @@ label .aftermath:
 label part2_stage1:
     $ charge_multiplier = 1.5
     # reset multiplier
+
+    show bg jail
+    "jail"
+    show bg court
+    "court"
     return
