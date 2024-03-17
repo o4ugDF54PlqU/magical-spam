@@ -7,6 +7,10 @@ init python:
     def check_win():
         global decreasing_charge
         if decreasing_charge >= 1:
+            renpy.jump("part1_stage4.fadeout")
+    
+    def check_faded(alpha):
+        if alpha <= 0:
             renpy.jump("part1_stage4.aftermath")
 
     def decrease_charge(amount):
@@ -77,7 +81,6 @@ label start:
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
-    show screen alpha_magic
 
     "Downtown Las Vegas buzzes with life even in the dead of night."
 
@@ -147,12 +150,9 @@ label start:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump start_menu
+    jump .choices
 
-    return
-
-
-label start_menu:
+label .choices:
     
     define key_gofundme = False
 
@@ -238,7 +238,7 @@ label start_menu:
             with quickleft
 
             $ choice1 = False
-            jump start_menu
+            jump .choices
         
         "♢ Start live-streaming ♢" if choice2:
             
@@ -270,7 +270,7 @@ label start_menu:
 
             $ key_gofundme = True
             $ choice2 = False
-            jump start_menu
+            jump .choices
 
         "♣ Start charging Glitter Cannon ♣":
             jump part1_stage2
@@ -314,7 +314,7 @@ label start_menu:
             with quickleft
 
             $ choice4 = False
-            jump start_menu
+            jump .choices
 
     return
 
@@ -368,12 +368,9 @@ label part1_stage2:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump part1_stage2_menu
+    jump .choices
 
-    return
-
-
-label part1_stage2_menu:
+label .choices:
 
     define key_calm_the_people = False
     define key_speak_with_victim = False
@@ -385,7 +382,7 @@ label part1_stage2_menu:
             "Todo <3"
             $ key_calm_the_people = True
             $ choice1 = False
-            jump part1_stage2_menu
+            jump .choices
         
         "♠ Save the monster's victim ♠":
             "Todo <3"
@@ -408,12 +405,12 @@ label part1_stage3:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    jump part1_stage3_menu
+    jump .choices
 
     return
 
 
-label part1_stage3_menu:
+label .choices:
 
     define key_appeal_to_court = False
     define key_guilty_villain = False
@@ -441,21 +438,25 @@ label part1_stage4:
 
     "Todo <3"
 
-    show screen alpha_magic
+    call screen alpha_magic
 
-    "charge by spamming C"
+    # "charge by spamming C"
 
-label .aftermath:
+label .fadeout:
 
     hide screen alpha_magic
+    call screen after_magic
+
+label .aftermath:
+    
+    hide screen after_magic
 
     if decreasing_charge >= 1:
-        show screen after_magic
         "we win"
     else:
         "lose"
 
-    jump part2_stage1
+    jump part2_A1
 
     return
 
@@ -468,6 +469,18 @@ label .aftermath:
 #  #                                                                       #  #
 ###############################################################################
 
-label part2_stage1:
+label part2_A1:
+
+    "The girls end up in jail."
+
+    "todo <3"
+
+    "todo <3"
+
+    $ choice1 = True
+    $ choice2 = True
+    $ choice3 = True
+    $ choice4 = True
+    # jump part2_A1_menu
 
     return

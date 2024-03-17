@@ -30,7 +30,7 @@ init python:
             
             # Check if the alpha has changed.
             if self.alpha > 0:
-                self.alpha -= time_since_last_event*0.0001
+                self.alpha -= time_since_last_event*0.0003
 
             # Create a transform, that can adjust the alpha channel of the
             # child.
@@ -51,6 +51,8 @@ init python:
             # Ask that we be re-rendered ASAP, so we can show the next
             # frame.
             renpy.redraw(self, 0)
+
+            check_faded(self.alpha)
 
             # Return the render.
             return render
