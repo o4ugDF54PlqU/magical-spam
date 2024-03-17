@@ -3,22 +3,6 @@ init python:
     import math
     import pygame
 
-    # Define the variable to be decreased
-    decreasing_charge = 0
-    last_event_time = pygame.time.get_ticks()
-
-    # Define a Python function to decrease the variable
-    def decrease_charge(amount):
-        global decreasing_charge
-        if decreasing_charge < 1:
-            decreasing_charge -= amount
-        if decreasing_charge < 0:
-            decreasing_charge = 0
-
-    def increase_charge(amount):
-        global decreasing_charge
-        decreasing_charge += amount
-
     class Charge(renpy.Displayable):
 
         def __init__(self, child, charge_multiplier, **kwargs):
