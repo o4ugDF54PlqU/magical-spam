@@ -4,10 +4,10 @@ init python:
     decreasing_charge = 0
     last_event_time = pygame.time.get_ticks()
 
-    def check_win():
+    def check_win(label):
         global decreasing_charge
         if decreasing_charge >= 1:
-            renpy.jump("part1_stage4.aftermath")
+            renpy.jump(label)
 
     def decrease_charge(amount):
         global decreasing_charge
@@ -19,7 +19,6 @@ init python:
     def increase_charge(amount):
         global decreasing_charge
         decreasing_charge += amount
-        check_win()
 
 
 # Declare characters used by this game. The color argument colorizes the
@@ -45,8 +44,8 @@ transform left_second:
     xcenter 710
     ypos 120
 
-screen alpha_magic:
-    add Charge("magicball.png", 1):
+screen alpha_magic_p1:
+    add Charge("magicball.png", "part1_stage4.aftermath", 1):
         xalign 0.5
         yalign 0.5
 
@@ -68,16 +67,9 @@ label start:
     # play music courtroom_bg
     # play music battle
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
     scene bg city
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
-    show screen alpha_magic
+    # show screen alpha_magic
 
     "Downtown Las Vegas buzzes with life even in the dead of night."
 
@@ -441,21 +433,21 @@ label part1_stage4:
 
     "Todo <3"
 
-    show screen alpha_magic
+    show screen alpha_magic_p1
 
     "charge by spamming C"
 
 label .aftermath:
 
-    hide screen alpha_magic
+    hide screen alpha_magic_p1
 
     if decreasing_charge >= 1:
         show screen after_magic
         "we win"
+        jump part2_stage1
     else:
         "lose"
 
-    jump part2_stage1
 
     return
 
