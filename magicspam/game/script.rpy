@@ -713,6 +713,8 @@ label part2_C4:
 
     j "How do you propose fixing $2.5 million dollars in damage?"
 
+    $ choice4 = True
+
 label .choices:
 
     menu:
@@ -724,6 +726,16 @@ label .choices:
         "♢ With a Gofundme campaign ♢" if key_gofundme:
             "Todo <3"
             jump neutral_ending1
+        
+        "♣ With a car wash ♣":
+            "Todo <3"
+            jump bad_ending2
+        
+        "♠ Start crying ♠" if choice4:
+            # look, Eris is having a rough time. give her a moment
+            "Todo <3"
+            $ choice4 = False
+            jump .choices
 
 
 label bad_ending1:
