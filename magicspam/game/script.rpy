@@ -30,11 +30,11 @@ init python:
 
 define config.menu_include_disabled = True
 
-define a = Character("Amy")
-define b = Character("Belle")
-define c = Character("Clover")
-define e = Character("Eris")
-define m = Character("ADEX")
+define a = Character("Amy", color="#a30d1a")
+define b = Character("Belle", color="#183c8f")
+define c = Character("Clover", color="#10a341")
+define e = Character("Eris", color="#5a0f66")
+define m = Character("ADEX", color="#FFFFFF")
 
 define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
 
@@ -101,15 +101,15 @@ label start:
 
     m "My name is ADEX!!"
 
-    m "I have come to HELP! Yes, to help all of you!"
+    m "I have come to HELP! Yes, to HELP all of you!"
 
     "ADEX grins at the scrambling ant-like casino-goers below."
 
-    m "I know you all need MONEY. And I can get it for you!"
+    m "I know you all need MONEY. And I can get it for YOU!"
 
     "A hailstorm of plastic cards came from the monster's mouth, smashing into roofs and windows."
 
-    m "Take one of my cards! Open a credit line! And spend all you need! Spend all you WANT!"
+    m "TAKE one of my cards! OPEN a credit line! SPEND all you need! SPEND all you WANT!"
 
     "Those still stuck outside cry out in fear as they are pelted with credit cards."
 
@@ -140,7 +140,7 @@ label start:
 
     e "Leave now! Or face our fury."
 
-    m "HA! Don't make me laugh! Ha! Look, you're making me laugh!"
+    m "HA! Don't make me laugh! HA! Look, you're making me LAUGH!"
 
     hide clover
     hide eris
