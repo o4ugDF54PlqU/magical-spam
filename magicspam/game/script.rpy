@@ -44,8 +44,10 @@ transform left_second:
     xcenter 710
     ypos 120
 
+define charge_mult = 1
+
 screen alpha_magic_p1:
-    add Charge("magicball.png", "part1_stage4.aftermath", 1):
+    add Charge("magicball.png", "part1_stage4.aftermath", charge_mult):
         xalign 0.5
         yalign 0.5
 
@@ -267,6 +269,7 @@ label start_menu:
             jump start_menu
 
         "♣ Start charging Glitter Cannon ♣":
+            $ charge_mult += 0.5
             jump part1_stage2
         
         "♠ Shimmering Strike! ♠" if choice4:

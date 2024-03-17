@@ -64,7 +64,7 @@ init python:
         def event(self, ev, x, y, st):
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_c:
                 increase_charge(0.03 * self.charge_multiplier)
-                check_win(label)
+                check_win(self.label)
 
             # If the alpha has changed, trigger a redraw event.
             # if self.alpha != decreasing_charge:
