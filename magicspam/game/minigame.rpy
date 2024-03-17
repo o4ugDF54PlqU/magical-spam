@@ -5,7 +5,7 @@ init python:
 
     class Charge(renpy.Displayable):
 
-        def __init__(self, child, charge_multiplier, **kwargs):
+        def __init__(self, child, label, charge_multiplier, **kwargs):
 
             # Pass additional properties on to the renpy.Displayable
             # constructor.
@@ -14,9 +14,8 @@ init python:
             # The child.
             self.child = renpy.displayable(child)
 
-            # The distance at which the child will become fully opaque, and
-            # where it will become fully transparent. The former must be less
-            # than the latter.
+            self.label = label
+                
             self.charge_multiplier = charge_multiplier
 
             # The alpha channel of the child.
@@ -65,8 +64,11 @@ init python:
         def event(self, ev, x, y, st):
             if ev.type == pygame.KEYDOWN and ev.key == pygame.K_c:
                 increase_charge(0.03 * self.charge_multiplier)
+                check_win(self.label)
             elif ev.type == pygame.MOUSEBUTTONDOWN:
                 increase_charge(0.04 * self.charge_multiplier)
+                check_win(self.label)
+
             # If the alpha has changed, trigger a redraw event.
             # if self.alpha != decreasing_charge:
             #     self.alpha = decreasing_charge

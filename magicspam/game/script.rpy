@@ -4,7 +4,7 @@ init python:
     decreasing_charge = 0
     last_event_time = pygame.time.get_ticks()
 
-    def check_win():
+    def check_win(label):
         global decreasing_charge
         if decreasing_charge >= 1:
             renpy.jump("part1_stage4.fadeout")
@@ -12,6 +12,7 @@ init python:
     def check_faded(alpha):
         if alpha <= 0:
             renpy.jump("part1_stage4.aftermath")
+            renpy.jump(label)
 
     def decrease_charge(amount):
         global decreasing_charge
@@ -23,7 +24,6 @@ init python:
     def increase_charge(amount):
         global decreasing_charge
         decreasing_charge += amount
-        check_win()
 
 
 # Declare characters used by this game. The color argument colorizes the
@@ -37,7 +37,7 @@ define c = Character("Clover")
 define e = Character("Eris")
 define m = Character("ADEX")
 
-define audio.courtroom_bg = "<loop 4.363636363636364>courtroom.ogg"
+define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
 
 define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
 
@@ -49,8 +49,10 @@ transform left_second:
     xcenter 710
     ypos 120
 
-screen alpha_magic:
-    add Charge("magicball.png", 1):
+define charge_mult = 1
+
+screen alpha_magic_p1:
+    add Charge("magicball.png", "part1_stage4.aftermath", charge_mult):
         xalign 0.5
         yalign 0.5
 
@@ -69,12 +71,9 @@ screen after_magic:
 
 label start:
 
-    # play music courtroom_bg
+    # play music courtroom_bgm
     # play music battle
-
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
+    jump part2_stage1
 
     scene bg city
 
@@ -99,21 +98,23 @@ label start:
 
     m "RAAAARRGHHHH!!!"
 
-    m "My name is ADEX!!"
+    "A hulking mass of tentacle-like cords and LED panels pulls itself to a standing position, reaching a towering height of 200 feet."
 
-    "The hulking mass of tentacle-like cords and LED panels that claims to be ADEX pulls itself to a standing position, reaching a towering height of 200 feet."
+    m "My name is ADEX!!"
 
     m "I have come to HELP! Yes, to help all of you!"
 
-    "The monster grins at the ant-like casino-goers below, who run to seek shelter in nearby buildings and cars."
+    "ADEX grins at the scrambling ant-like casino-goers below."
 
-    m "I know you all need MONEY. And I can get it for you! Take one of my cards! Take a credit card! And spend all you need! Spend all you WANT!"
+    m "I know you all need MONEY. And I can get it for you!"
 
-    "Tens of thousands of plastic cards fly from the monster's mouth, clinking against roofs and windows like a hailstorm."
+    "A hailstorm of plastic cards came from the monster's mouth, smashing into roofs and windows."
 
-    "Citizens stuck outside cry out in fear as they are pelted with credit cards."
+    m "Take one of my cards! Open a credit line! And spend all you need! Spend all you WANT!"
 
-    "But their screams don't fall on deaf ears."
+    "Those still stuck outside cry out in fear as they are pelted with credit cards."
+
+    "But their screams didn't fall on deaf ears."
 
     "After a very fancy series of outfit-transforming animations that aren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
 
@@ -273,6 +274,7 @@ label .choices:
             jump .choices
 
         "♣ Start charging Glitter Cannon ♣":
+            $ charge_mult += 1
             jump part1_stage2
         
         "♠ Shimmering Strike! ♠" if choice4:
@@ -438,21 +440,22 @@ label part1_stage4:
 
     "Todo <3"
 
-    call screen alpha_magic
+    call screen alpha_magic_p1
 
     # "charge by spamming C"
 
 label .fadeout:
 
-    hide screen alpha_magic
-    call screen after_magic
+    hide screen alpha_magic_p1
+    call screen after_magic_p1
 
 label .aftermath:
     
-    hide screen after_magic
+    hide screen after_magic_p1
 
     if decreasing_charge >= 1:
         "we win"
+        jump part2_stage1
     else:
         "lose"
 
@@ -470,6 +473,9 @@ label .aftermath:
 ###############################################################################
 
 label part2_A1:
+    
+    $ charge_multiplier = 1.5
+    # reset multiplier
 
     "The girls end up in jail."
 
@@ -483,4 +489,8 @@ label part2_A1:
     $ choice4 = True
     # jump part2_A1_menu
 
+    show bg jail
+    "jail"
+    show bg court
+    "court"
     return
