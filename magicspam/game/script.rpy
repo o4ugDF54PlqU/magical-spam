@@ -7,11 +7,10 @@ init python:
     def check_win(label):
         global decreasing_charge
         if decreasing_charge >= 1:
-            renpy.jump("part1_stage4.fadeout")
+            renpy.jump(label)
     
-    def check_faded(alpha):
+    def check_faded(alpha, label):
         if alpha <= 0:
-            renpy.jump("part1_stage4.aftermath")
             renpy.jump(label)
 
     def decrease_charge(amount):
@@ -52,12 +51,12 @@ transform left_second:
 define charge_mult = 1
 
 screen alpha_magic_p1:
-    add Charge("magicball.png", "part1_stage4.aftermath", charge_mult):
+    add Charge("magicball.png", "part1_stage4.fadeout", charge_mult):
         xalign 0.5
         yalign 0.5
 
-screen after_magic:
-    add Fadeout("white.png"):
+screen after_magic_p1:
+    add Fadeout("white.png", "part1_stage4.aftermath"):
         xalign 0.5
         yalign 0.5
 
@@ -73,7 +72,7 @@ label start:
 
     # play music courtroom_bgm
     # play music battle
-    jump part2_stage1
+    # jump part2_stage1
 
     scene bg city
 
@@ -453,11 +452,7 @@ label .aftermath:
     
     hide screen after_magic_p1
 
-    if decreasing_charge >= 1:
-        "we win"
-        jump part2_stage1
-    else:
-        "lose"
+    "Todo <3"
 
     jump part2_A1
 
@@ -477,6 +472,8 @@ label part2_A1:
     $ charge_multiplier = 1.5
     # reset multiplier
 
+    show bg jail
+
     "The girls end up in jail."
 
     "todo <3"
@@ -487,10 +484,9 @@ label part2_A1:
     $ choice2 = True
     $ choice3 = True
     $ choice4 = True
-    # jump part2_A1_menu
+    jump part2_A1.choices
 
-    show bg jail
-    "jail"
     show bg court
+
     "court"
     return

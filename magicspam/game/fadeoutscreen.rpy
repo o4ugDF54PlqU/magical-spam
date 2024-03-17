@@ -5,7 +5,7 @@ init python:
 
     class Fadeout(renpy.Displayable):
 
-        def __init__(self, child, **kwargs):
+        def __init__(self, child, label, **kwargs):
 
             # Pass additional properties on to the renpy.Displayable
             # constructor.
@@ -13,6 +13,8 @@ init python:
 
             # The child.
             self.child = renpy.displayable(child)
+
+            self.label = label
 
             # The alpha channel of the child.
             self.alpha = 1.0
@@ -52,7 +54,7 @@ init python:
             # frame.
             renpy.redraw(self, 0)
 
-            check_faded(self.alpha)
+            check_faded(self.alpha, self.label)
 
             # Return the render.
             return render
