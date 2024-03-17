@@ -46,10 +46,14 @@ transform left_second:
     ypos 120
 
 screen alpha_magic:
-    add Charge("test.png", 1):
+    add Charge("magicball.png", 1):
         xalign 0.5
         yalign 0.5
 
+screen after_magic:
+    add Fadeout("white.png"):
+        xalign 0.5
+        yalign 0.5
 
 ###############################################################################
 #  #                                                                       #  #
@@ -62,17 +66,18 @@ screen alpha_magic:
 label start:
 
     # play music courtroom_bg
-    play music battle
+    # play music battle
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
 
-    scene bg room
+    scene bg city
 
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
+    show screen alpha_magic
 
     "Downtown Las Vegas buzzes with life even in the dead of night."
 
@@ -443,6 +448,7 @@ label .aftermath:
     hide screen alpha_magic
 
     if decreasing_charge >= 1:
+        show screen after_magic
         "we win"
     else:
         "lose"
