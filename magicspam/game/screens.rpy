@@ -750,6 +750,13 @@ screen preferences():
                     textbutton _("Unseen Text") action Preference("skip", "toggle")
                     textbutton _("After Choices") action Preference("after choices", "toggle")
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                
+                vbox:
+                    style_prefix "radio_pref"
+                    label _("Let Clover Swear")
+                    hbox:
+                        textbutton _("Yes") action SetVariable('preferences.clover_swear', True)
+                        textbutton _("No") action SetVariable('preferences.clover_swear', False)
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.

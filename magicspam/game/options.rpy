@@ -128,6 +128,10 @@ default preferences.text_cps = 0
 
 default preferences.afm_time = 15
 
+## Whether or not Clover is allowed to swear.
+
+default preferences.clover_swear = False
+
 
 ## Save directory ##############################################################
 ##

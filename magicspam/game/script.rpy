@@ -107,7 +107,7 @@ label start:
 
     "But their screams don't fall on deaf ears."
 
-    "After a very fancy series of outfit-transforming animations that weren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
+    "After a very fancy series of outfit-transforming animations that aren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
 
     show adex at right
     show amy at left_first
@@ -223,7 +223,10 @@ label start_menu:
             show clover at left_first
             with quickleft
 
-            c "Get his a**, Amy!"
+            if preferences.clover_swear:
+                c "Get his ass, Amy!"
+            else:
+                c "Get his a**, Amy!"
 
             hide clover
             hide amy
@@ -314,7 +317,45 @@ label start_menu:
 
 label part1_stage2:
 
-    "Todo <3"
+    "ADEX moves towards the hotel behind it and peers through the windows. Firefighters and volunteers are desperately trying to escort everybody out of the building as quickly as possible."
+
+    show clover at left_second
+    with quickleft
+
+    if preferences.clover_swear:
+        c "Shit, this guy is an actual beast. Back away, guys! I'm gonna do it!"
+    else:
+        c "Jeez, this guy is an actual beast. Back away, guys! I'm gonna do it!"
+
+    show amy at left_first
+    with quickleft
+
+    a "Whoo! Glitter Cannon!"
+
+    hide amy
+    show belle at left_first
+    with quickleft
+
+    b "You're right. For once, the situation calls for Glitter Cannon. Just be careful."
+
+    c "I know, I know. Now buy me time while I charge up!"
+
+    hide belle
+    show eris at left_first
+    with quickleft
+
+    e "WAIT! Look in that thing's hand! There's someone there!"
+
+    "Amidst the tangled cables that compose ADEX's hand, a man struggles against the monsters grip and yells unintelligibly at its face."
+
+    if preferences.clover_swear:
+        c "Damn it. I'll try to aim the cannon to not hit him. But it won't be easy if this dude keeps throwing stupid credit cards at me!"
+    else:
+        c "Uh oh. I'll try to aim the cannon to not hit him. But it won't be easy if this dude keeps throwing stupid credit cards at me!"
+
+    hide eris
+    hide clover
+    with quickleft
 
     $ choice1 = True
     $ choice2 = True
