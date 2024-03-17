@@ -105,12 +105,15 @@ label charge_cannon:
     $ cannon_charge = cannon_charge + 1
 
     if cannon_charge == 1:
+        play sound charge volume 0.6
         "{color=#10a341}Clover starts charging the Glitter Cannon.{/color}"
 
     elif cannon_charge == 2:
+        play sound charge volume 0.6
         "{color=#10a341}The Glitter Cannon is almost charged.{/color}"
     
     else:
+        play sound charge volume 0.6
         "{color=#10a341}The Glitter Cannon is fully charged!{/color}"
         if impulsive_clover:
             menu:
@@ -636,11 +639,13 @@ label part1_stage4:
     show adex at center
     with quickleft
 
+    play sound charge volume 0.6
     call screen alpha_magic_p1
 
 label .fadeout:
 
     hide screen alpha_magic_p1
+    play sound impact volume 0.2
     call screen after_magic_p1
 
 label .aftermath:
@@ -757,6 +762,8 @@ label part2_A2:
     hide eris
     show judge at right
     with quickright
+    
+    play sound order
 
     "You are charged with vandalism."
 
@@ -852,11 +859,8 @@ label .choices:
 
             $ choice4 = False
 
-            if cannon_charge < 2:
-                call charge_cannon
-                jump .choices
-            else:
-                jump charge_cannon
+            call charge_cannon
+            jump .choices
 
 
 label part2_A5:
@@ -1070,11 +1074,13 @@ label bad_ending3:
     show judge at center
     with quickleft
 
+    play sound charge volume 0.6
     call screen alpha_magic_bad
 
 label .fadeout:
 
     hide screen alpha_magic_bad
+    play sound impact volume 0.2
     call screen after_magic_bad
 
 label .aftermath:
@@ -1157,11 +1163,13 @@ label good_ending2:
     show adex at center
     with quickleft
 
+    play sound charge volume 0.6
     call screen alpha_magic_good
 
 label .fadeout:
 
     hide screen alpha_magic_good
+    play sound impact volume 0.2
     call screen after_magic_good
 
 label .aftermath:
@@ -1187,6 +1195,8 @@ label .aftermath:
     with quickright
 
     "The judge bangs his gavel against the smoking ashes that used to be his desk."
+
+    play sound order
 
     j "ORDER! Order in the court!"
 
