@@ -13,9 +13,7 @@ define m = Character("ADEX")
 
 define audio.courtroom_bg = "<loop 4.363636363636364>courtroom.ogg"
 
-define quickmove = MoveTransition(0.2)
-define quick_enter_left = MoveTransition(0.2, enter=offscreenleft)
-define quick_exit_left = MoveTransition(0.2, leave=offscreenleft)
+define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
 
 transform left_first:
     xcenter 360
@@ -56,17 +54,6 @@ label start:
 
     "Downtown Las Vegas buzzes with life even in the dead of night."
 
-    show screen alpha_magic
-
-    "charge by spamming C"
-
-    hide screen alpha_magic
-
-    if decreasing_charge >= 1:
-        "we win"
-    else:
-        "lose"
-
     "The deafening rings and chimes of countless slot machines drown out the frustrations of thousands of drunk gamblers."
 
     with hpunch
@@ -84,7 +71,7 @@ label start:
 
     m "My name is ADEX!!"
 
-    "The hulking mass of tentacle-like cords and LED panels that claims to be ADEX pulls itself to a standing position, reaching a towering height of 500 feet."
+    "The hulking mass of tentacle-like cords and LED panels that claims to be ADEX pulls itself to a standing position, reaching a towering height of 200 feet."
 
     m "I have come to HELP! Yes, to help all of you!"
 
@@ -100,27 +87,26 @@ label start:
 
     "After a very fancy series of outfit-transforming animations that weren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
 
-    show adex at right with quickmove
-    show amy at left_first with quick_enter_left
+    show adex at right
+    show amy at left_first
+    with quickleft
 
     a "Stop right there, ADEX!"
 
     show belle at left_second
-    with quick_enter_left
+    with quickleft
 
     b "We are the CARDS OF JUSTICE!"
 
     hide amy
-    with quick_exit_left
     show clover at left_first
-    with quick_enter_left
+    with quickleft
 
     c "And we're here to KICK YOUR TEETH IN!"
 
     hide belle
-    with quick_exit_left
     show eris at left_second
-    with quick_enter_left
+    with quickleft
 
     e "Leave now! Or face our fury."
 
@@ -128,7 +114,7 @@ label start:
 
     hide clover
     hide eris
-    with quick_exit_left
+    with quickleft
 
     $ choice1 = True
     $ choice2 = True
@@ -148,20 +134,110 @@ label start_menu:
         "Fight the rampaging monster!"
 
         "♡ Sparkle 'Splosion! ♡" if choice1:
-            show amy at left_first
-            with quick_enter_left
+            show amy at left_second
+            with quickleft
 
             a "Don't worry everybody! We're here to help!"
-            "Todo <3"
 
+            show eris at left_first
+            with quickleft
+
+            e "This monster is huge. We need to give Clover the chance to charge up Glitter Cannon or we don't stand a chance."
+
+            hide eris
+            show belle at left_first
+            with quickleft
+
+            b "Amy! Distract it with one of your attacks! Give it as many rainbows as you can!"
+
+            a "Right!"
+
+            hide belle
+            with quickleft
+
+            a "SPARKLE-"
+
+            a "'SPLOOOSION!!"
+
+            "Amy gathers a ball of blinding light around her chest, closing her eyes as tightly as she can as the white beams streaming from it grow ever stronger."
+
+            with hpunch
+
+            "Finally, she thrusts her hands forward, channeling the light into a laser that crackles with electric energy, piercing through the monster's eye."
+
+            "ADEX stumbles backwards as burnt pieces of wire and rubber fall from its face, but it holds its ground and turns away from the light."
+
+            if key_gofundme:
+
+                show belle at left_first
+                with quickleft
+
+                "Belle brings her phone to Amy's face."
+
+                b "Say hi to the chat, Amy!"
+
+                a "(rgh) Hi chat! Um. Subscribe!"
+
+                hide belle
+                with quickleft
+            
+            "The monster leans back towards the Cards of Justice and releases an ear-shattering roar."
+
+            show amy at left_first
+            with quickleft
+            with hpunch
+
+            "Amy loses her focus on the attack, which bursts into an explosion of light, knocking Amy off her feet."
+
+            a "Shoot! I'm sorry guys, I hope that was enough time! I couldn't hold him for long!"
+
+            show amy at left_second
+            show eris at left_first
+            with quickleft
+
+            e "Don't worry. You did what you needed."
+
+            hide eris
+            show clover at left_first
+            with quickleft
+
+            c "Get his a**, Amy!"
+
+            hide clover
             hide amy
-            with quick_exit_left
+            with quickleft
 
             $ choice1 = False
             jump start_menu
         
         "♢ Start live-streaming ♢" if choice2:
-            "Todo <3"
+            
+            show belle at left_second
+            with quickleft
+
+            b "Hang on, guys. This is a great chance to stream for our Twitch channel!"
+
+            show clover at left_first
+            with quickleft
+            
+            c "Really?! Now?"
+
+            hide clover
+            show amy at left_first
+            with quickleft
+
+            a "Hey, we made Belle the Social Media Director for a reason. She knows what she's doing!"
+
+            b "I'll handle it. You guys keep focusing on the fight, and I'll make sure I get good shots!"
+
+            hide amy
+            with quickleft
+
+            b "Ok, let's see. \"Big Monster in Las Vegas! | ~*~ New emotes for subscribers ~*~\". And then we'll say this is \"Just Chatting\"..."
+
+            hide belle
+            with quickleft
+
             $ key_gofundme = True
             $ choice2 = False
             jump start_menu
@@ -170,7 +246,43 @@ label start_menu:
             jump part1_stage2
         
         "♠ Shimmering Strike! ♠" if choice4:
-            "Todo <3"
+            
+            show belle at left_first
+            with quickleft
+
+            b "Look! There's a giant red bulb on the back of its neck! Maybe that's its weak spot!"
+
+            show eris at left_second
+            with quickleft
+
+            e "Stand back. I'm on it."
+
+            hide belle
+            with quickleft
+
+            "Eris leaps across the neon signs that illuminate the Las Vegas street and draws a humming violet saber from behind her back."
+
+            "She reaches a hotel behind the monster and climbs up the wall to a balcony on the 20th floor, scaring a cat that had been calmly watching the chaos through a window."
+
+            e "Shimmering Strike!"
+
+            "Eris propels herself off the balcony and plunges her blade into the red bulb, which shatters into thousands of glimmering scarlet shards."
+            
+            "ADEX reaches a massive arm towards its back, which Eris swiftly dodges."
+
+            "The monster lightly scratches its back where the bulb was, then returns to the fight, apparently unbothered."
+
+            show belle at left_first
+            with quickleft
+
+            b "Huh. I guess that was just... a big red bulb or something. Sorry, that was a bad call."
+
+            e "No, I thought it would do something, too. I guess we need to try something else."
+
+            hide belle
+            hide eris
+            with quickleft
+
             $ choice4 = False
             jump start_menu
 
@@ -258,6 +370,17 @@ label part1_stage3_menu:
 label part1_stage4:
 
     "Todo <3"
+
+    show screen alpha_magic
+
+    "Charge ~*~ GLITTER CANNON ~*~ by spamming C!"
+
+    hide screen alpha_magic
+
+    if decreasing_charge >= 1:
+        "we win"
+    else:
+        "lose"
 
     jump part2_stage1
 
