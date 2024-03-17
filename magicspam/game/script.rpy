@@ -19,6 +19,14 @@ transform left_side:
     xcenter 500
     ypos 120
 
+screen alpha_magic:
+    add Charge("test.png", 100, 200):
+        xalign 0.5
+        yalign 0.5
+
+    # Schedule the function to run every second
+    timer 0.1 repeat True action decrease_charge(0.01)
+
 label start:
 
     # play music courtroom_bg
@@ -35,6 +43,17 @@ label start:
     # directory.
 
     "Downtown Las Vegas buzzes with life even in the dead of night."
+
+    show screen alpha_magic
+
+    "charge by spamming C"
+
+    hide screen alpha_magic
+
+    if decreasing_charge >= 1:
+        "we win"
+    else:
+        "lose"
 
     "The deafening rings and chimes of countless slot machines drown out the frustrations of thousands of drunk gamblers."
 
