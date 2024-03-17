@@ -154,6 +154,7 @@ label start:
 
     with hpunch
 
+    play sound roar volume 0.4
     "But among the noise, a deep and sudden BOOM tears across the busy roads."
 
     "The city seems to freeze, waiting in hushed silence for the sound to repeat itself and confirm their fears."
@@ -163,6 +164,8 @@ label start:
     show adex
     with hpunch
 
+            
+    play sound roar volume 0.7
     m "RAAAARRGHHHH!!!"
 
     "A hulking mass of tentacle-like cords and LED panels pulls itself to a standing position, reaching a towering height of 200 feet."
@@ -256,6 +259,7 @@ label .choices:
             "Amy gathers a ball of blinding light around her chest, closing her eyes as tightly as she can as the white beams streaming from it grow ever stronger."
 
             with hpunch
+            play sound attack
 
             "Finally, she thrusts her hands forward, channeling the light into a laser that crackles with electric energy, piercing through the monster's eye."
 
@@ -277,6 +281,8 @@ label .choices:
                 hide belle
                 with quickleft
             
+            play sound roar volume 0.6
+
             "The monster leans back towards the Cards of Justice and releases an ear-shattering roar."
 
             show amy at left_first
@@ -365,6 +371,7 @@ label .choices:
 
             "The path takes her in an arc around the monster. Its back is now in her sight."
 
+            play sound attack
             e "Shimmering Strike!"
 
             "Eris propels herself off a radiator block, scaring a nearby cat that had been calmly watching the chaos, and plunges her blade into the red bulb, which shatters into thousands of glimmering scarlet shards."
@@ -497,7 +504,11 @@ label .choices:
             
             "Eris slams her saber into the ground and rockets herself toward the monster's hand."
 
+            play sound attack
+            
             "With a quick *SHLING!*, she slices through ADEX's thumb. The monster recoils and draws its hand back, dropping the man."
+
+            play sound roar volume 0.4
 
             m "Ow! What the- OW!"
 
@@ -734,7 +745,13 @@ label .choices:
     menu:
 
         "♢ Go peacefully ♢":
-            "Todo <3"
+            
+            b "I think we should get going. We have nothing to worry about."
+
+            e "Yeah. I sure hope you're right."
+
+            a "Everything is sunshine and rainbows."
+
             jump part2_A2
         
         "♡ Summon a puppy ♡" if choice2:
@@ -762,12 +779,14 @@ label part2_A2:
     hide eris
     show judge at right
     with quickright
-    
+
     play sound order
 
-    "You are charged with vandalism."
+    j "As a direct result of your \"Glitter Cannon\", the 10 City Hotel and Casion suffered $2.5 million in damages."
 
-    "How do you plead?"
+    j "You are charged with vandalism."
+
+    j "How do you plead?"
 
     hide amy
     hide belle
@@ -838,7 +857,23 @@ label .choices:
             jump part_A5
         
         "♠ The monster's victim ♠" if key_speak_with_victim:
-            "Todo <3"
+
+            show eris at left_first
+            with quickleft
+
+            e "We'd like to call in the monster's victim."
+            
+            show victim at left_second
+            with quickleft
+
+            v """It is true that the Cards of Justice saved me.
+
+            I found myself in horrible amounts of debt and a destructive gambling addiction.
+
+            The monster took advantage of me and tried to get me to open more credit lines so that I could gamble more and fall further into debt.
+
+            If the Cards of Justice didn't slay the monster, I would be indebted to the monster forever."""
+
             jump part2_A5
         
         "♢ Twitch chat ♢" if key_gofundme:
@@ -865,10 +900,28 @@ label .choices:
 
 label part2_A5:
 
-    "Very well. We will let you off with some fines as a warning. Wait in the holding cell."
+    j "Very well. We will let you off with some fines as a warning. Wait in the holding cell."
+
+    hide victim
+    with quickleft
+
+    hide judge
+    with quickleft
 
     scene bg jail
     play music jail
+
+    show eris at left_first
+    with quickleft
+
+    show clover at left_second
+    with quickleft
+
+    show belle at right_first
+    with quickright
+
+    show amy at right_second
+    with quickright
 
     e "I don't want to get in trouble again. I want to leave the group."
     
@@ -1109,7 +1162,7 @@ label .aftermath:
 
 label neutral_ending1:
 
-    play music battle
+    play music jail
 
     "Neutral Ending 1 ♢: team pleads guilty, but some debt still has to be paid. Debt is repaid through gofundme"
 
@@ -1119,8 +1172,6 @@ label neutral_ending1:
 
 
 label neutral_ending2:
-
-    play music battle
 
     "Neutral Ending 2 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris isolates herself from the group, rest of the group remains and tries to find a replacement"
 
