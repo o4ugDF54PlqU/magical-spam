@@ -195,18 +195,20 @@ label .choices:
 
             "Finally, she thrusts her hands forward, channeling the light into a laser that crackles with electric energy, piercing through the monster's eye."
 
-            "ADEX stumbles backwards as burnt pieces of wire and rubber fall from its face, but it holds its ground and turns away from the light."
+            "ADEX stumbles backwards as chunks of charred wire and rubber fall from its face, but it holds its ground and turns away from the light."
 
             if key_gofundme:
 
                 show belle at left_first
                 with quickleft
 
+                b "That shot was pretty poggers don't you guys think."
+
                 "Belle brings her phone to Amy's face."
 
                 b "Say hi to the chat, Amy!"
 
-                a "(rgh) Hi chat! Um. Subscribe!"
+                a "(rgh) Hi chat! Um... Subscribe!"
 
                 hide belle
                 with quickleft
@@ -219,13 +221,13 @@ label .choices:
 
             "Amy loses her focus on the attack, which bursts into an explosion of light, knocking Amy off her feet."
 
-            a "Shoot! I'm sorry guys, I hope that was enough time! I couldn't hold him for long!"
+            a "Shoot! Sorry guys, I hope that was enough time! I couldn't hold him for long!"
 
             show amy at left_second
             show eris at left_first
             with quickleft
 
-            e "Don't worry. You did what you needed."
+            e "Don't worry. That was just what we needed."
 
             hide eris
             show clover at left_first
@@ -293,22 +295,24 @@ label .choices:
             hide belle
             with quickleft
 
-            "Eris leaps across the neon signs that illuminate the Las Vegas street and draws a humming violet saber from behind her back."
+            "Eris wall jumps from an alley to get to the roof of an apartment."
+            
+            "She dashes from roof to roof beneath the neon glow and draws a humming violet saber from behind her."
 
-            "She reaches a hotel behind the monster and climbs up the wall to a balcony on the 20th floor, scaring a cat that had been calmly watching the chaos through a window."
+            "The path takes her in an arc around the monster. Its back is now in her sight."
 
             e "Shimmering Strike!"
 
-            "Eris propels herself off the balcony and plunges her blade into the red bulb, which shatters into thousands of glimmering scarlet shards."
+            "Eris propels herself off a radiator block, scaring a nearby cat that had been calmly watching the chaos, and plunges her blade into the red bulb, which shatters into thousands of glimmering scarlet shards."
             
             "ADEX reaches a massive arm towards its back, which Eris swiftly dodges."
 
-            "The monster lightly scratches its back where the bulb was, then returns to the fight, apparently unbothered."
+            "The monster scratches its wound for a few seconds before returning to the fight, apparently unbothered."
 
             show belle at left_first
             with quickleft
 
-            b "Huh. I guess that was just... a big red bulb or something. Sorry, that was a bad call."
+            b "Huh. I guess that was just... a big red bulb or something. Sorry, that was a bad call. I've been playing too many games lately."
 
             e "No, I thought it would do something, too. I guess we need to try something else."
 
@@ -325,7 +329,7 @@ label .choices:
 
 label part1_stage2:
 
-    "ADEX moves towards the hotel behind it and peers through the windows. Firefighters and volunteers are desperately trying to escort everybody out of the building as quickly as possible."
+    "ADEX turns towards the hotel behind it and peers through the windows. Firefighters and volunteers are urgently escorting everybody out of the building."
 
     show clover at left_second
     with quickleft
