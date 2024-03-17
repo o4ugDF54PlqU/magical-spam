@@ -20,7 +20,7 @@ transform left_side:
     ypos 120
 
 screen alpha_magic:
-    add Charge("test.png", 100, 200):
+    add Charge("test.png", 1):
         xalign 0.5
         yalign 0.5
 

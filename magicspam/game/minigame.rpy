@@ -21,7 +21,7 @@ init python:
 
     class Charge(renpy.Displayable):
 
-        def __init__(self, child, opaque_distance, transparent_distance, **kwargs):
+        def __init__(self, child, charge_multiplier, **kwargs):
 
             # Pass additional properties on to the renpy.Displayable
             # constructor.
@@ -33,8 +33,7 @@ init python:
             # The distance at which the child will become fully opaque, and
             # where it will become fully transparent. The former must be less
             # than the latter.
-            self.opaque_distance = opaque_distance
-            self.transparent_distance = transparent_distance
+            self.charge_multiplier = charge_multiplier
 
             # The alpha channel of the child.
             self.alpha = 0.0
@@ -70,7 +69,7 @@ init python:
             time_since_last_event = current_time - last_event_time
             last_event_time = current_time
             if ev.type == pygame.KEYDOWN:
-                increase_charge(0.05)
+                increase_charge(0.03 * self.charge_multiplier)
             else:
                 decrease_charge(0.0001 * time_since_last_event)
 
