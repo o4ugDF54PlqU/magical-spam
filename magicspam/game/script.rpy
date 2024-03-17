@@ -68,6 +68,7 @@ transform right_second:
     ypos 120
 
 define charge_mult = 1
+define impulsive_clover = True
 
 screen alpha_magic_p1:
     add Charge("magicball.png", "part1_stage4.fadeout", charge_mult):
@@ -111,6 +112,15 @@ label charge_cannon:
     
     else:
         "{color=#10a341}The Glitter Cannon is fully charged!{/color}"
+        if impulsive_clover:
+            menu:
+                "Activate the Glitter Cannon?"
+
+                "Yes":
+                    jump bad_ending3
+
+                "No":
+                    return
 
     return
 
@@ -844,8 +854,11 @@ label .choices:
 
             $ choice4 = False
 
-            call charge_cannon
-            jump .choices
+            if cannon_charge < 2:
+                call charge_cannon
+                jump .choices
+            else:
+                jump charge_cannon
 
 
 label part2_A5:
@@ -961,6 +974,7 @@ label .choices:
 
             c "Right?!?"
 
+            $ impulsive_clover = False
             call charge_cannon
 
             $ choice4 = False
@@ -1127,6 +1141,7 @@ label good_ending2:
     # play music victory
     stop music
 
+    hide judge
     show adex at right
     with quickright
     
@@ -1209,4 +1224,4 @@ label credits:
 
     "Music: SC Klein, Michael Eaton\nBackgrounds: KB Tran"
 
-    return
+    $ MainMenu(confirm=False)()
