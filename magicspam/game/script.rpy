@@ -760,7 +760,7 @@ label .choices:
             jump .choices
         
         "♣ Start charging Glitter Cannon ♣":
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon
             jump part2_A2
         
         "♠ Blame Clover ♠" if key_blame_clover:
@@ -798,7 +798,7 @@ label part2_A2:
             jump part2_A3
         
         "♡♣ Not guilty ♣♡":
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon_1
             jump part2_B3
 
 
@@ -838,7 +838,7 @@ label .choices:
 
             $ choice4 = False
 
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon_2
             jump .choices
 
 
@@ -894,7 +894,7 @@ label .choices:
 
             $ choice4 = False
 
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon_3
             jump .choices
 
 
@@ -990,7 +990,7 @@ label part2_B3:
         
         "♣ Try to enrage the monster ♣":
             "Todo <3"
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon_4
             jump bad_ending2
         
         "♢ Accuse the monster ♢":
@@ -1030,7 +1030,7 @@ label .choices:
             c "Right?!?"
 
             $ impulsive_clover = False
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon_5
 
             $ choice4 = False
             jump .choices
@@ -1073,7 +1073,7 @@ label .choices:
         
         "♣ With a car wash ♣":
             "Todo <3"
-            call charge_cannon
+            call charge_cannon from _call_charge_cannon_6
             jump bad_ending2
         
         "♠ Start crying ♠" if choice4:
