@@ -477,10 +477,7 @@ label part2_A1:
 
     "todo <3"
 
-    $ choice1 = True
     $ choice2 = True
-    $ choice3 = True
-    $ choice4 = True
 
 label .choices:
 
@@ -488,6 +485,7 @@ label .choices:
 
         "♢ Go peacefully ♢":
             "Todo <3"
+            jump part2_A2
         
         "♡ Summon a puppy ♡" if choice2:
             "Todo <3"
@@ -496,6 +494,7 @@ label .choices:
         
         "♣ Start charging Glitter Cannon ♣":
             "Todo <3"
+            jump part2_A2
         
         "♠ Blame Clover ♠" if key_blame_clover:
             jump bad_ending1
@@ -507,9 +506,171 @@ label .choices:
     return
 
 
-label bad_ending1:
+label part2_A2:
+
+    "You are charged with vandalism."
+
+    "How do you plead?"
+
+    menu:
+
+        "♢♠ Guilty ♠♢":
+            jump part2_A3
+        
+        "♡♣ Not guilty ♣♡":
+            jump part2_B3
+
+
+label part2_A3:
+
+    "We plead guilty, BUT..."
+
+    $ choice1 = True
+
+label .choices:
+
+    menu:
+
+        "♡ Look! A puppy! ♡" if choice1:
+            "Todo <3"
+            $ choice1 = False
+            jump .choices
+        
+        "♠ We only meant to do the right thing ♠":
+            jump part2_A4
+        
+        "♢ We can fix our mistakes ♢":
+            jump part2_C4
+        
+        "♣ *Stick out your tongue* ♣":
+            jump bad_ending2
+
+
+label part2_A4:
     
+    "Do you have anybody to vouch for you?"
+
+label .choices:
+
+    menu:
+
+        "♡ The citizens in the hotel ♡" if key_calm_the_people:
+            "Todo <3"
+            "(Hey, you blew up my room!)"
+            jump bad_ending2
+        
+        "♠ The monster's victim ♠" if key_speak_with_victim:
+            "Todo <3"
+            jump part2_A5
+        
+        "♢ Twitch chat ♢" if key_gofundme:
+            "Todo <3"
+            jump bad_ending2
+        
+        "♣ Your mom! ♣":
+            "Todo <3"
+            jump bad_ending2
+
+
+label part2_A5:
+
+    "Very well. We will let you off with some fines as a warning. Wait in the holding cell."
+
+    scene bg jail
+    play music jail
+
+    e "I don't want to get in trouble again. I want to leave the group."
+    
+    if key_happy_eris:
+        jump part2_A6
+    else:
+        jump neutral_ending2
+    
+    return
+
+
+label part2_A6:
+
+    c "No!" 
+    
+    e "Well, what do you want to do with your life?"
+
+    $ choice1 = True
+    $ choice2 = True
+    $ choice3 = True
+
+    define confessions_made = 0
+
+label .choices:
+
+    menu:
+        
+        "♡ Be remembered as a good person ♡" if choice1:
+            $ choice1 = False
+            $ confessions_made = confessions_made + 1
+
+            if confessions_made >= 3:
+                jump good_ending3
+            
+            jump .choices
+        
+        "♢ Keep doing things with you guys ♢" if choice2:
+            $ choice2 = False
+            $ confessions_made = confessions_made + 1
+
+            if confessions_made >= 3:
+                jump good_ending3
+            
+            jump .choices
+        
+        "♣ Become a better version of me ♣" if choice3:
+            $ choice3 = False
+            $ confessions_made = confessions_made + 1
+
+            if confessions_made >= 3:
+                jump good_ending3
+            
+            jump .choices
+
+
+label bad_ending1:
+
+    play music defeat
+
     "Bad ending 1 ♠:  Eris leaves the group, Belle becomes depressed, Amy falls deeper into addiction, and Clover gets revenge on the government and falls into the crippling debt"
+
+    jump credits
+
+    return
+
+
+label bad_ending2:
+
+    play music defeat
+
+    "Bad ending 2 ♡: Court case is not taken seriously so it is lost. Amy is in denial that they lost, Eris fears she will be in debt forever and fears for life, Clover destroys the city, Belle"
+
+    jump credits
+
+    return
+
+
+label neutral_ending2:
+
+    play music battle
+
+    "Neutral Ending 2 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris isolates herself from the group, rest of the group remains and tries to find a replacement"
+
+    jump credits
+
+    return
+
+
+label good_ending3:
+
+    # play music victory
+
+    "Good Ending 3 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris learns to find fun in the silliness and recenters her focus on the sparkly- eyed idealism the group embodies, the group accepts that debt is a side effect of doing good"
 
     jump credits
 
