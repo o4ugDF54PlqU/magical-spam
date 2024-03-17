@@ -24,9 +24,6 @@ screen alpha_magic:
         xalign 0.5
         yalign 0.5
 
-    # Schedule the function to run every second
-    timer 0.1 repeat True action decrease_charge(0.01)
-
 label start:
 
     # play music courtroom_bg
