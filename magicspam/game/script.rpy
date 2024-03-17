@@ -37,11 +37,15 @@ define e = Character("Eris", color="#bb0ed6")
 define m = Character("ADEX", color="#FFFFFF")
 define v = Character("Victim", color="#f5c255")
 define j = Character("Judge", color="#d39a20")
+define l = Character("Bailiff", color="#b4790a")
 
 define audio.courtroom_bgm = "<loop 4.363636363636364>courtroom.ogg"
+define audio.victory = "<loop 5.53>victory.ogg"
 
 define quickleft = MoveTransition(0.2, enter=offscreenleft, leave=offscreenleft)
 define quickright = MoveTransition(0.2, enter=offscreenright, leave=offscreenright)
+
+define cannon_charge = 0
 
 transform left_first:
     xalign 0.15
@@ -50,6 +54,16 @@ transform left_first:
 
 transform left_second:
     xalign 0.35
+    xanchor 0.5
+    ypos 120
+
+transform right_first:
+    xalign 0.85
+    xanchor 0.5
+    ypos 120
+
+transform right_second:
+    xalign 0.65
     xanchor 0.5
     ypos 120
 
@@ -64,6 +78,22 @@ screen after_magic_p1:
     add Fadeout("white.png", "part1_stage4.aftermath"):
         xalign 0.5
         yalign 0.5
+
+label charge_cannon:
+
+    $ cannon_charge = cannon_charge + 1
+
+    if cannon_charge == 1:
+        "{color=#10a341}Clover starts charging the Glitter Cannon.{/color}"
+
+    elif cannon_charge == 2:
+        "{color=#10a341}The Glitter Cannon is almost charged.{/color}"
+    
+    else:
+        "{color=#10a341}The Glitter Cannon is fully charged!{/color}"
+
+    return
+
 
 ###############################################################################
 #  #                                                                       #  #
@@ -112,13 +142,13 @@ label start:
 
     m "I know you all need MONEY. And I can get it for YOU!"
 
-    "A hailstorm of plastic cards came from the monster's mouth, smashing into roofs and windows."
+    "A hailstorm of plastic cards erupts from the monster's mouth, smashing into roofs and windows."
 
     m "TAKE one of my cards! OPEN a credit line! SPEND all you need! SPEND all you WANT!"
 
     "Those still stuck outside cry out in fear as they are pelted with credit cards."
 
-    "But their screams didn't fall on deaf ears."
+    "But their screams don't fall on deaf ears."
 
     "After a very fancy series of outfit-transforming animations that aren't in the budget for this visual novel, our heroes - the CARDS OF JUSTICE - burst onto the scene!"
 
@@ -545,7 +575,9 @@ label .choices:
             jump part1_stage4
         
         "♢ Blue Brilliance! ♢":
-            "Todo <3"
+
+            "Blue Brilliance is left as an exercise for the reader."
+
             jump part1_stage4
 
     return
@@ -553,8 +585,26 @@ label .choices:
 
 label part1_stage4:
 
-    "Todo <3"
+    show clover at left_second
+    with quickleft
 
+    if preferences.clover_swear:
+        c "Thanks for stalling, y'all, the Glitter Cannon is fully charged. Time to fucking blow everything up!"
+    else:
+        c "Thanks for stalling, y'all, the Glitter Cannon is fully charged. Time to fucking blow everything up!"
+
+    "Clover shakes as she struggles to contain the power of the fully charged beam. She aims it the best she can towards the monster and releases the blinding laser."
+
+    show clover at left_first
+    with quickleft
+    with hpunch
+
+    if preferences.clover_swear:
+        c "TAKE THAT, BITCH! ARRRRGGGGHHHH!!!!!!!!!!"
+    else:
+        c "TAKE THAT! ARRRRGGGGHHHH!!!!!!!!!!"
+
+    hide clover
     show adex at center
     with quickleft
 
@@ -574,7 +624,37 @@ label .aftermath:
     hide adex
     with quickright
 
-    "Todo <3"
+    "The monster instantly faints. He did not stand a chance."
+
+    show amy at left_first
+    with quickleft
+
+    a "YOU DID IT! No one can deflect the Glitter Cannon!"
+
+    show belle at left_second
+    with quickleft
+
+    b "That was perfect, Clover! You destroyed that thing!"
+
+    if key_gofundme:
+        b "And the stream loved it! We're getting so many donations!"
+
+    show clover at right_second
+    with quickright
+
+    if preferences.clover_swear:
+        c "FUCK YEAHHHHHHH!! GLITTER CANNOOONNN!"
+    else:
+        c "FRICK YEAHHHHHHH!! GLITTER CANNOOONNN!"
+
+    show eris at right_first
+    with quickright
+
+    e "Sorry to break the mood, but I think we destroyed more than just the enemy. Like a lot more. And do you all hear that?"
+
+    "Police sirens wail in the distance, approaching the smoking battleground."
+
+    a "Hey, the police are here! Time to arrest a credit card monster!"
 
     jump part2_A1
 
@@ -597,11 +677,24 @@ label part2_A1:
     show bg jail
     play music jail
 
-    "The girls end up in jail."
+    a "I can't believe they threw US in jail!"
 
-    "todo <3"
+    e "I can't believe this is happening. I'm glad we got the enemy, but when we get out of here we probably need to work on the accuracy of the Glitter Cannon."
 
-    "todo <3"
+    c "Hey, I'm working on it! It's not my problem that the Glitter Cannon is so amazingly amazing."
+
+    c "My power is simply destroying things with godly amounts of glitter and cannon."
+
+    a "At the end of the day we got the villain so let's just focus on the positive. Yayyyyyy!"
+
+    if preferences.clover_swear:
+        b "I can't think of any other people who I would rather be jailed with. I love you all. We girl boss pussy slayyyyyyyed today."
+    else:
+        b "I can't think of any other people who I would rather be jailed with. I love you all."
+
+    "The door to the jail cell swings open and a woman walks in."
+
+    l "I am the bailiff. You are all being summoned to the court today for your trial."
 
     $ choice2 = True
 
@@ -619,7 +712,7 @@ label .choices:
             jump .choices
         
         "♣ Start charging Glitter Cannon ♣":
-            "Todo <3"
+            jump charge_cannon
             jump part2_A2
         
         "♠ Blame Clover ♠" if key_blame_clover:
@@ -644,6 +737,7 @@ label part2_A2:
             jump part2_A3
         
         "♡♣ Not guilty ♣♡":
+            jump charge_cannon
             jump part2_B3
 
 
@@ -669,6 +763,7 @@ label .choices:
             jump part2_C4
         
         "♣ *Stick out your tongue* ♣":
+            jump charge_cannon
             jump bad_ending2
 
 
@@ -694,6 +789,7 @@ label .choices:
         
         "♣ Your mom! ♣":
             "Todo <3"
+            jump charge_cannon
             jump bad_ending2
 
 
