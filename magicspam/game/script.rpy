@@ -1164,7 +1164,7 @@ label bad_ending2:
 
     play music defeat
 
-    "Bad ending 2 ♡: Court case is not taken seriously so it is lost. Amy is in denial that they lost, Eris fears she will be in debt forever and fears for life, Clover destroys the city, Belle"
+    "Bad ending 2 ♡: Court case is not taken seriously so it is lost. Amy is in denial that they lost, Eris fears she will be in debt forever and fears for life, Clover destroys the city, Belle feels the group is falling apart"
 
     jump credits
 
@@ -1213,7 +1213,7 @@ label bad_ending3:
 
     b "What the hell?!"
 
-    "Bad ending 3 ♣: Glitter Cannon is used, but at the wrong time, so the other girls only get upset with Clover "
+    "Bad ending 3 ♣: Glitter Cannon is used, but at the wrong time, so the other girls only get upset with Clover"
 
     jump credits
 
@@ -1224,7 +1224,7 @@ label neutral_ending1:
 
     play music jail
 
-    "Neutral Ending 1 ♢: team pleads guilty, but some debt still has to be paid. Debt is repaid through gofundme"
+    "Neutral Ending 1 ♢: team pleads guilty, but some debt still has to be paid. Debt is repaid through gofundme (lawful)"
 
     jump credits
 
@@ -1233,7 +1233,7 @@ label neutral_ending1:
 
 label neutral_ending2:
 
-    "Neutral Ending 2 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris isolates herself from the group, rest of the group remains and tries to find a replacement"
+    "Neutral Ending 2 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris isolates herself from the group, rest of the group remains and tries to find a replacement (true sad)"
 
     jump credits
 
@@ -1244,7 +1244,7 @@ label good_ending1:
     
     play music victory
 
-    "Good Ending 1 ♡♢♣♠: court case is won, debt does not have to be repaid"
+    "Good Ending 1 ♡♢♣♠: court case is won, debt does not have to be repaid (true ending)"
 
     jump credits
 
@@ -1313,6 +1313,8 @@ label good_ending2:
 
     j "And for that reason, I declare you to be NOT GUILTY!"
 
+    "Good Ending 2 ♣(♢): Glitter Cannon is used at correct time when villains arrive, judge forgives them for destroying the city (chaotic)"
+
     jump credits
 
     return
@@ -1320,9 +1322,11 @@ label good_ending2:
 
 label good_ending3:
 
-    # play music victory
+    play music victory
 
-    "Good Ending 3 ♠: team pleads guilty to receive a lesser sentence, they receive a warning, Eris learns to find fun in the silliness and recenters her focus on the sparkly- eyed idealism the group embodies, the group accepts that debt is a side effect of doing good"
+    "Good Ending 3 ♠: team pleads guilty to receive a lesser sentence, they receive a warning."
+    
+    "Eris learns to find fun in the silliness and recenters her focus on the sparkly- eyed idealism the group embodies, the group accepts that debt is a side effect of doing good (lawful)"
 
     jump credits
 

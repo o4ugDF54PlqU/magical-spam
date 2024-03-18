@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Glitter Cannon : Justice in the Cards")
+define config.name = _("Glitter Cannon: Justice in the Cards")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -30,6 +30,15 @@ define config.version = "1.1"
 ## triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
+Made for {a=https://itch.io/jam/wsoft-shammy-jam-2024}Wolverinesoft Shammy Jam 2024{/a}, with theme "Charged"
+
+Writers: Brighton Pauli, Zoie Tuinstra, KB Tran
+
+Programming: KB Tran, Brighton Pauli
+
+Art: Lili Omilian, KB Tran
+
+Music: SC Klein, Michael Eaton
 """)
 
 
