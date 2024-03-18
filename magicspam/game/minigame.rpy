@@ -5,7 +5,7 @@ init python:
 
     class Charge(renpy.Displayable):
 
-        def __init__(self, child, label, charge_multiplier, **kwargs):
+        def __init__(self, child, charge_multiplier, **kwargs):
             global decreasing_charge
             decreasing_charge = 0
 
@@ -15,10 +15,11 @@ init python:
 
             # The child.
             self.child = renpy.displayable(child)
-
-            self.label = label
+            self.white = "white.png"
+            self.charging = True
                 
             self.charge_multiplier = charge_multiplier
+            self.discharge_rate = 0.00008
 
             # The alpha channel of the child.
             self.alpha = 0.0
@@ -34,12 +35,17 @@ init python:
             time_since_last_event = current_time - last_event_time
             last_event_time = current_time
 
-            decrease_charge(0.0001 * time_since_last_event)
-            
-            # Check if the alpha has changed.
-            if self.alpha != decreasing_charge:
-                self.alpha = decreasing_charge
+            amount = self.discharge_rate * time_since_last_event
+            if self.alpha >= 1 and self.charging == True:
+                self.child = renpy.displayable(self.white)
+                self.charging = False
+                self.discharge_rate *= 15
+            elif self.alpha < 0:
+                self.alpha = 0
+                if self.charging == False:
+                    renpy.end_interaction(1)
 
+            self.alpha -= amount
             # Create a transform, that can adjust the alpha channel of the
             # child.
             t = Transform(child=self.child, alpha=self.alpha)
@@ -64,12 +70,15 @@ init python:
             return render
 
         def event(self, ev, x, y, st):
+            if self.charging == False:
+                return self.child.event(ev, x, y, st)\
+
+            if self.alpha < 0.1:
+                self.alpha += 0.2
             if ev.type == pygame.KEYDOWN:
-                increase_charge(0.03 * self.charge_multiplier)
-                check_win(self.label)
+                self.alpha += 0.03 * self.charge_multiplier
             elif ev.type == pygame.MOUSEBUTTONDOWN:
-                increase_charge(0.04 * self.charge_multiplier)
-                check_win(self.label)
+                self.alpha += 0.04 * self.charge_multiplier
 
             # If the alpha has changed, trigger a redraw event.
             # if self.alpha != decreasing_charge:

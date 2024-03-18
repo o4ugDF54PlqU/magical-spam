@@ -54,12 +54,13 @@ init python:
             # frame.
             renpy.redraw(self, 0)
 
-            check_faded(self.alpha, self.label)
 
             # Return the render.
             return render
 
         def event(self, ev, x, y, st):
+            # if ev.type == pygame.
+            check_faded(self.alpha, self.label)
             return self.child.event(ev, x, y, st)
 
         def visit(self):

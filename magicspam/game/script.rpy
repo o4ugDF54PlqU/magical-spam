@@ -1,28 +1,6 @@
 ﻿# The script of the game goes in this file.
 init python:
-    # Define the variable to be decreased
-    decreasing_charge = 0
     last_event_time = pygame.time.get_ticks()
-
-    def check_win(label):
-        global decreasing_charge
-        if decreasing_charge >= 1:
-            renpy.jump(label)
-    
-    def check_faded(alpha, label):
-        if alpha <= 0:
-            renpy.jump(label)
-
-    def decrease_charge(amount):
-        global decreasing_charge
-        if decreasing_charge < 1:
-            decreasing_charge -= amount
-        if decreasing_charge < 0:
-            decreasing_charge = 0
-
-    def increase_charge(amount):
-        global decreasing_charge
-        decreasing_charge += amount
 
 
 # Declare characters used by this game. The color argument colorizes the
@@ -70,35 +48,12 @@ transform right_second:
 define charge_mult = 1
 define impulsive_clover = True
 
-screen alpha_magic_p1:
-    add Charge("magicball.png", "part1_stage4.fadeout", charge_mult):
+screen alpha_magic:
+    add Charge("magicball.png", charge_mult):
         xalign 0.5
         yalign 0.5
 
-screen after_magic_p1:
-    add Fadeout("white.png", "part1_stage4.aftermath"):
-        xalign 0.5
-        yalign 0.5
-
-screen alpha_magic_good:
-    add Charge("magicball.png", "good_ending2.fadeout", charge_mult):
-        xalign 0.5
-        yalign 0.5
-
-screen after_magic_good:
-    add Fadeout("white.png", "good_ending2.aftermath"):
-        xalign 0.5
-        yalign 0.5
-
-screen alpha_magic_bad:
-    add Charge("magicball.png", "bad_ending3.fadeout", charge_mult):
-        xalign 0.5
-        yalign 0.5
-
-screen after_magic_bad:
-    add Fadeout("white.png", "bad_ending3.aftermath"):
-        xalign 0.5
-        yalign 0.5
+define flash = Fade(0.1, 0.0, 0.5, color="#fff")
 
 label charge_cannon:
 
@@ -681,18 +636,10 @@ label part1_stage4:
     with quickleft
 
     play sound charge volume 0.6
-    call screen alpha_magic_p1
+    call screen alpha_magic
 
-label .fadeout:
-
-    hide screen alpha_magic_p1
     play sound impact volume 0.2
-    call screen after_magic_p1
 
-label .aftermath:
-    
-    hide screen after_magic_p1
-    
     hide adex
     with dissolve
 
@@ -1247,17 +1194,9 @@ label bad_ending3:
     with quickleft
 
     play sound charge volume 0.6
-    call screen alpha_magic_bad
+    call screen alpha_magic
 
-label .fadeout:
-
-    hide screen alpha_magic_bad
     play sound impact volume 0.2
-    call screen after_magic_bad
-
-label .aftermath:
-    
-    hide screen after_magic_bad
 
     hide judge
     with dissolve
@@ -1273,6 +1212,8 @@ label .aftermath:
     b "CLOVER!"
 
     b "What the hell?!"
+
+    "Bad ending 3 ♣: Glitter Cannon is used, but at the wrong time, so the other girls only get upset with Clover "
 
     jump credits
 
@@ -1301,7 +1242,7 @@ label neutral_ending2:
 
 label good_ending1:
     
-    # play music victory
+    play music victory
 
     "Good Ending 1 ♡♢♣♠: court case is won, debt does not have to be repaid"
 
@@ -1312,7 +1253,7 @@ label good_ending1:
 
 label good_ending2:
 
-    # play music victory
+    play music victory
     stop music
 
     hide judge
@@ -1334,17 +1275,9 @@ label good_ending2:
     with quickleft
 
     play sound charge volume 0.6
-    call screen alpha_magic_good
+    call screen alpha_magic
 
-label .fadeout:
-
-    hide screen alpha_magic_good
     play sound impact volume 0.2
-    call screen after_magic_good
-
-label .aftermath:
-    
-    hide screen after_magic_good
 
     hide adex
     with dissolve
