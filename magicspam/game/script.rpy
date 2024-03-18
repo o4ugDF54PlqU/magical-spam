@@ -505,7 +505,7 @@ label .choices:
             "Eris slams her saber into the ground and rockets herself toward the monster's hand."
 
             play sound attack
-            
+
             "With a quick *SHLING!*, she slices through ADEX's thumb. The monster recoils and draws its hand back, dropping the man."
 
             play sound roar volume 0.4
@@ -589,7 +589,37 @@ label .choices:
     menu:
 
         "♡ Calm the people ♡" if key_calm_the_people:
-            "Todo <3"
+            
+            hide adex
+            with quickright
+
+            show amy at left_first
+            show belle at left_second
+            with quickleft
+
+            v "Where am I going to sleep tonight? I don't have any money left to stay somewhere else and everything is destroyed anyways."
+
+            v "All of my belongings were in my room, and I'll never get them back."
+
+            a "Noooo don't worry about it! We shouldn't focus on all of the bad things that are happening."
+
+            a "We're all safe and sound with my puppies! I'll say it again, look at how cute they are!"
+
+            b "Yeah you all don't have to worry about it. We're going to throw the villain in the slammer and make them pay for it."
+
+            b "Then we'll replace your belongings with upgraded versions and the damaged buildings will be built better than before."
+
+            v "That's right. We should make the rich bad guys pay for all of us who are cheated by their system."
+
+            "The civilians begin chanting to eat the rich"
+
+            hide amy
+            hide belle
+            with quickleft
+
+            show adex at right
+            with quickright
+
             $ key_appeal_to_court = True
             jump part1_stage4
         
@@ -854,7 +884,7 @@ label .choices:
 
         "♡ The citizens in the hotel ♡" if key_calm_the_people:
             "Todo <3"
-            jump part_A5
+            jump part2_A5
         
         "♠ The monster's victim ♠" if key_speak_with_victim:
 
@@ -874,6 +904,9 @@ label .choices:
 
             If the Cards of Justice didn't slay the monster, I would be indebted to the monster forever."""
 
+            hide victim
+            with quickleft
+            
             jump part2_A5
         
         "♢ Twitch chat ♢" if key_gofundme:
@@ -980,25 +1013,100 @@ label .choices:
 # Plead not guilty
 label part2_B3:
 
-    "Well, we have a witness here. *Brings in ADEX*"
+    show judge at right_first
+    show adex at right_second
+    with quickright
+
+    j "Well, we have a witness here who says he witness your vandalism first-hand."
+
+    m "That's right! Not only did these four blow up the building, but they attacked me!"
+
+    j "What do you four have to say to defend yourselves?"
 
     menu:
 
         "♠ Call the victim to the stand ♠" if key_speak_with_victim:
-            "Todo <3"
+
+            show eris at left_first
+            with quickleft
+
+            e "We would like to call Adex's victim to stand."
+
+            hide adex
+            show victim at right_second
+            with quickright
+
+            hide eris
+            with quickleft
+
             jump part2_B4
         
         "♣ Try to enrage the monster ♣":
-            "Todo <3"
+            
+            show clover at left_first
+            with quickleft
+
+            c "Not only didn't stand a chance against the glitter cannon, you're really ugly to look at, why would anybody want to open a credit line with you?"
+
+            show amy at left_second
+            with quickleft
+
+            a "You're so disgusting that not even my puppies can cheer me up. And who doesn't cheer up because of my adorable puppies?"
+
+            play sound order
+
+            j "ENOUGH! Settle down. We will not tolerate this behavior."
+
+            hide clover
+            hide amy
+            with quickleft
+
             call charge_cannon from _call_charge_cannon_4
             jump bad_ending2
         
         "♢ Accuse the monster ♢":
-            "Todo <3"
+            
+            show clover at left_first
+            with quickleft
+
+            c "The city is all a mess because of you! You're the one who destroyed everything, definitely not my OP uncontrollable glitter cannon."
+
+            show belle at left_second
+            with quickleft
+
+            b "Yeah! How dare you try to pin this on the Cards of Justice?!? We're the good ones, it's in our names. Cards. Of. JUSTICEEEEEEEEEEEE."
+
+            hide clover
+            hide belle
+            with quickleft
+
             jump bad_ending2
         
         "♡ Appeal to ADEX's empathy ♡":
-            "Todo <3"
+            
+            show amy at left_first
+            with quickleft
+
+            a """Hey Adex, we know you're not a bad monster.
+            You were just trying to help the citizens get out of debt but in a horrible, twisted way.
+            We know that you will admit that you're guilty out of the goodness of your heart.
+            After serving your time, you can pursue a better path to help people with your financial knowledge."""
+
+            show belle at left_second
+            with quickleft
+
+            b "Please Adex, for the sake of keeping our group together, just admit your guilt."
+
+            "Amy and Belle give Adex their biggest puppy eyes to convince him to feel bad for his actions."
+
+            "It is not effective."
+
+            m "You are all the dumbest group of magical girls I've ever met if you really think I'm going to fall for that one."
+
+            hide amy
+            hide belle
+            with quickleft
+
             jump bad_ending2
 
 
@@ -1068,7 +1176,18 @@ label .choices:
             jump bad_ending2
         
         "♢ With a Gofundme campaign ♢" if key_gofundme:
-            "Todo <3"
+            show belle at left_first
+            with quickleft
+
+            b """We can easily set up a GoFundMe!
+            With the enormous Cards of Justice Twitch following, thanks to me streaming every moment of our epic boss fights, 
+            we have accrued a loyal fan base willing to support our every wish and desire, including paying for the renewal of the city that we so faithfully serve."""
+
+            show eris at left_second
+            with quickleft
+
+            e "That's great Belle! I think I underestimated the importance of your Twitch streaming, I think we should be even more invasive with the streaming next time!"
+
             jump neutral_ending1
         
         "♣ With a car wash ♣":
