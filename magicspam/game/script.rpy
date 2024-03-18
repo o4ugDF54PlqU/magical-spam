@@ -60,11 +60,11 @@ label charge_cannon:
     $ cannon_charge = cannon_charge + 1
 
     if cannon_charge == 1:
-        play sound charge volume 0.6
+        play sound charge volume 0.2
         "{color=#10a341}Clover starts charging the Glitter Cannon.{/color}"
 
     elif cannon_charge == 2:
-        play sound charge volume 0.6
+        play sound charge volume 0.4
         "{color=#10a341}The Glitter Cannon is almost charged.{/color}"
     
     else:
